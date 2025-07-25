@@ -16,7 +16,6 @@ public class Router {
         // 1. main용 라우터목록
         map.put("main"      , new Route("header", "/WEB-INF/jsp/main/main", "footer"));
         map.put("security"  , new Route("header", "/WEB-INF/jsp/security/security", "footer"));
-        map.put("popup"     , new Route("header", "/WEB-INF/jsp/sample/popup/popup", "footer"));
         map.put("pdf"       , new Route("header", "/WEB-INF/jsp/sample/pdf/pdf", "footer"));
         map.put("excel"     , new Route("header", "/WEB-INF/jsp/sample/excel/excel", "footer"));
         map.put("file"      , new Route("header", "/WEB-INF/jsp/sample/file/file", "footer"));
@@ -30,6 +29,7 @@ public class Router {
         
         //2. iframe 라우터목록
         map.put("validation", new Route("/WEB-INF/jsp/iframe/sample/validation/validation"));
+        map.put("popup"     , new Route("/WEB-INF/jsp/iframe/sample/popup/popup"));
         
         
         
