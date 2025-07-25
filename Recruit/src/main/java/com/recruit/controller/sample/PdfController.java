@@ -32,7 +32,7 @@ public class PdfController {
 	@GetMapping("/popup")
 	public String popup(Model model) {
 		System.out.println("pdf저장 테스트..!!");
-		return "/sample/pdf/pdf_image";
+		return "iframe/sample/popup/pdf_image";
 	}		
 	
 	

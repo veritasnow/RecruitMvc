@@ -14,13 +14,13 @@ import com.recruit.router.ViewConstants;
 public class PopupController {
 
 
-	@GetMapping("/test")
+	@GetMapping("/sample")
 	public String sample(Model model) {
 
 		System.out.println("팝업창 테스트..!!");
 		Route route  = Router.getInstance().getRoute("popup");
 		model.addAttribute("route", route);
-		return ViewConstants.INDEX;
+		return ViewConstants.IFRAME_INDEX;
 	}
 
 	
