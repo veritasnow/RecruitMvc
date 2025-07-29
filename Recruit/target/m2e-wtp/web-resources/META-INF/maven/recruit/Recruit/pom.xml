@@ -308,6 +308,27 @@
 		    <scope>test</scope>
 		</dependency>
 
+		<!-- Spring Batch Core -->
+		<dependency>
+		    <groupId>org.springframework.batch</groupId>
+		    <artifactId>spring-batch-core</artifactId>
+		    <version>4.3.9</version>
+		</dependency>
+		
+		<!-- Spring Batch Infrastructure -->
+		<dependency>
+		    <groupId>org.springframework.batch</groupId>
+		    <artifactId>spring-batch-infrastructure</artifactId>
+		    <version>4.3.9</version>
+		</dependency>
+		
+		<!-- Spring JDBC for Batch -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${spring.maven.artifact.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
