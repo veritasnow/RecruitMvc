@@ -67,6 +67,11 @@
             <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <multipart-config>
+	        <max-file-size>10485760</max-file-size>
+	        <max-request-size>20971520</max-request-size>
+	        <file-size-threshold>0</file-size-threshold>
+    	</multipart-config>
     </servlet>
 
     <!-- 매핑 URL 패턴 수정: 기존 *.do → / (모든 요청 처리) -->

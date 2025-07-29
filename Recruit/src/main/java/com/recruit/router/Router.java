@@ -30,6 +30,7 @@ public class Router {
         //2. iframe 라우터목록
         map.put("validation", new Route("/WEB-INF/jsp/iframe/sample/validation/validation"));
         map.put("popup"     , new Route("/WEB-INF/jsp/iframe/sample/popup/popup"));
+        map.put("file"      , new Route("/WEB-INF/jsp/iframe/sample/file/file"));
         
         
         

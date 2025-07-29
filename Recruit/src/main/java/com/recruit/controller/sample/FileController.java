@@ -1,5 +1,6 @@
 package com.recruit.controller.sample;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ import com.recruit.utils.file.FileExtensionValidator;
 @RequestMapping("/file")
 public class FileController {
 
-	@GetMapping("/test")
+	@GetMapping("/sample")
 	public String sample(Model model) {
 
 		System.out.println("테스트..!!");
@@ -31,17 +32,15 @@ public class FileController {
 		Route  route  = Router.getInstance().getRoute("file");
 		model.addAttribute("route", route);
 		
-		System.out.println("ViewConstants.INDEX : " + ViewConstants.INDEX);
+		System.out.println("ViewConstants.INDEX : " + ViewConstants.IFRAME_INDEX);
 		System.out.println("route : " + route.toString());
 		
-		return ViewConstants.INDEX;
+		return ViewConstants.IFRAME_INDEX;
 	}	
 
 	@PostMapping("/upload")
 	@ResponseBody
 	public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
-		System.out.println("file 확장자 체크 및 업로드 테스트..!!");
-		
 		Map<String, Object> response = new HashMap<>();
 		
 		// 파일명과 확장자 체크
@@ -53,22 +52,29 @@ public class FileController {
 		}
 		
 		try {
-			StringBuilder result = new StringBuilder();
+			// 저장 디렉토리 경로
+			String uploadDir = "C:\\upload";
 			
-			long fileSize = file.getSize();
-            result.append("파일 이름: ").append(filename).append("\n")
-                  .append("파일 크기: ").append(fileSize).append(" bytes");
+			// 저장 디렉토리가 존재하지 않으면 생성
+			File directory = new File(uploadDir);
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
 			
-			response.put("status", "success");
-			response.put("content", result.toString());
+			// 저장 경로 설정
+			File destFile = new File(uploadDir, filename);
 			
-			return ResponseEntity.ok().body(response);
+			// 파일 저장
+			file.transferTo(destFile);
+			
+			response.put("status" , "success");
+			response.put("message", "파일 업로드 성공");
+			response.put("content", String.format("파일 경로: %s, 크기: %d bytes", destFile.getAbsolutePath(), file.getSize()));
+			return ResponseEntity.ok(response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 			response.put("status", "error");
-			response.put("message", e.getMessage());
-			
+			response.put("message", "파일 저장 중 오류가 발생했습니다: " + e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 	}		

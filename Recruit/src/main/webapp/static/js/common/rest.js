@@ -91,11 +91,10 @@ const restApi = {
 		if (this.token.authToken) {
 			headers['Authorization'] = 'Bearer ' + this.token.authToken;
 		}
-
+		
 		return $.ajax({
 			type: 'POST',
 			url: urlLink,
-			dataType: 'json',
 			contentType: false,
 			processData: false,
 			headers: headers,

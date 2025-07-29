@@ -21,6 +21,10 @@
 
     <!-- ✅ 정적 리소스 매핑: /static/** -> /webapp/static/ -->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="31556926" />
+	<mvc:resources mapping="/upload/**" location="file:///C:/upload/" />
+
+	<!-- 파일 업로드를 위한 multipartResolver 설정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 
     <!-- JSP 뷰 리졸버 -->
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
