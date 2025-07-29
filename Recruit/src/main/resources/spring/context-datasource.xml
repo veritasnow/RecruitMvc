@@ -27,13 +27,29 @@
     </bean>
     -->
     
-    <!-- oracle (POM에서 commons-dbcp, ojdbc(라이센스 사항으로 별도로 배포되지 않음) 관련 라이브러리 설정)
+    <!-- oracle (POM에서 commons-dbcp, ojdbc(라이센스 사항으로 별도로 배포되지 않음) 관련 라이브러리 설정) -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:example" />
-        <property name="username" value="user"/>
-        <property name="password" value="password"/>
-    </bean>
-    -->
-    
+	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	    <property name="url" value="jdbc:oracle:thin:@192.168.0.31:1521:XE"/>
+		<property name="username" value="RECRUIT"/>
+		<property name="password" value="1234"/>
+	</bean>
+   
+	<!-- 2. SqlSessionFactory 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
+	</bean>
+	
+	<!-- 3. SqlSessionTemplate 설정 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	    <constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 4. Mapper 인터페이스 자동 등록 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <property name="basePackage" value="com.recruit.mapper"/>
+	    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+	
 </beans>

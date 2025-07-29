@@ -10,7 +10,7 @@ const loginModule = {
     // 이벤트 등록 함수: 로그인 버튼 클릭 시 doLogin 함수 호출
     bindEvents: function() {
         this.loginBtn.addEventListener('click', () => {
-            this.doLogin(this.form, '/doLogin'); // 'doLogin' URL로 폼 제출
+            this.doLogin(this.form, '/login'); // 'login' URL로 폼 제출
         });
     },
 

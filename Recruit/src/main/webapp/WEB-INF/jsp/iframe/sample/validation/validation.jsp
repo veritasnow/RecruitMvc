@@ -5,8 +5,13 @@
 
     <form id="sampleForm">
         <div>
-            <label for="username">아이디 (영문/숫자, 4~12자):</label>
-            <input type="text" id="username" name="username" />
+            <label for="id">아이디 (영문/숫자, 4~12자):</label>
+            <input type="text" id="id" name="id" />
+        </div>
+        
+        <div>
+            <label for="name">닉네임 (1~12자):</label>
+            <input type="text" id="name" name="name" />
         </div>
 
         <div>
@@ -29,71 +34,40 @@
             <input type="password" id="password" name="password" />
         </div>
 
-        <button type="button" onclick="validateForm()">검사하기</button>
+        <button type="button" onclick="requestForm('I')">등록</button>        
         
-        <button type="button" onclick="outkiki()">퇴사</button>        
+        <button type="button" onclick="requestForm('U')">수정</button>
         
-        <button type="button" onclick="outkiki2222()">퇴사222</button>        
-        
-        
-        
+        <button type="button" onclick="requestForm('D')">삭제</button>        
     </form>
 
     <!-- JavaScript 로딩: JSP에서는 contextPath 사용 -->
     <script src="/static/js/common/validation.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-    
-    	function outkiki() {
-    		
-    		alert("ddd");
-    		
-    		
-    		const sibal = restApi.update('/menu/list', { id: 1 })
-				.then(function (data) {
-					console.log(data);
-				})
-				.catch(function (error) {
-					console.error('API 요청 실패:', error);
-				});    		
-    		
-    	}
-    	
-    	
-    	function outkiki2222() {
-    		
-    		alert("ddd12323123");
-    		
-    		
-    		const sibal = restApi.save('/menu/list', { id: 123123 })
-				.then(function (data) {
-					console.log(data);
-				})
-				.catch(function (error) {
-					console.error('API 요청 실패:', error);
-				});    		
-    		
-    	}    	
-    	
-    
-    
-        function validateForm() {
-            const username  = document.getElementById('username').value;
+        function requestForm(type) {
+            const id        = document.getElementById('id').value;
+            const name      = document.getElementById('name').value;
             const email     = document.getElementById('email').value;
             const phone     = document.getElementById('phone').value;
             const birthdate = document.getElementById('birthdate').value;
             const password  = document.getElementById('password').value;
 
-            if (validationUtil.isEmpty(username)) {
+            if (validationUtil.isEmpty(id)) {
                 alert('아이디를 입력하세요.');
                 return;
             }
-            if (!validationUtil.isAlphaNumeric(username)) {
+            if (!validationUtil.isAlphaNumeric(id)) {
                 alert('아이디는 영문자와 숫자만 가능합니다.');
                 return;
             }
-            if (!validationUtil.hasLengthBetween(username, 4, 12)) {
+            if (!validationUtil.hasLengthBetween(id, 4, 12)) {
                 alert('아이디는 4자 이상 12자 이하이어야 합니다.');
+                return;
+            }
+            
+            if (validationUtil.isEmpty(name)) {
+                alert('이름을 입력하세요.');
                 return;
             }
 
@@ -132,9 +106,42 @@
                 alert('비밀번호는 영문 대문자, 소문자, 숫자, 특수문자를 포함한 8자 이상이어야 합니다.');
                 return;
             }
+            
+            const data = {
+            	id: id,
+            	name: name,
+            	email: email,
+            	phone: phone,
+            	birth: birthdate,
+            	password: password
+            };
 
-            alert('모든 유효성 검사를 통과했습니다!');
-            // 서버 전송 로직 추가 가능
+            // 서버 전송 로직
+            if (type == 'I') {
+            	const test = restApi.save('/user/test', data)
+				.then(function (data) {
+					console.log(data);
+				})
+				.catch(function (error) {
+					console.error('API 요청 실패:', error);
+				});    
+            } else if (type == 'U') {
+            	const test = restApi.update('/user/test', data)
+				.then(function (data) {
+					console.log(data);
+				})
+				.catch(function (error) {
+					console.error('API 요청 실패:', error);
+				});    
+            } else if (type == 'D') {
+            	const test = restApi.delete('/user/test', data)
+				.then(function (data) {
+					console.log(data);
+				})
+				.catch(function (error) {
+					console.error('API 요청 실패:', error);
+				});    
+            }
         }
     </script>
 

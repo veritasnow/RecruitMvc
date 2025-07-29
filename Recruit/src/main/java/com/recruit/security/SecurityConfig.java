@@ -58,7 +58,7 @@ public class SecurityConfig {
         // 로그인 설정
         http.formLogin(form -> form
             .loginPage("/login")
-            .loginProcessingUrl("/doLogin")
+            .loginProcessingUrl("/login")
             .usernameParameter("id")
             .passwordParameter("password")
             .defaultSuccessUrl("/main", true)
@@ -69,11 +69,19 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
             .requestMatchers(
                 new AntPathRequestMatcher("/login"),
-                new AntPathRequestMatcher("/doLogin"),
                 new AntPathRequestMatcher("/static/**")      // 정적 리소스 허용
             ).permitAll()
             .requestMatchers(new AntPathRequestMatcher("/main")).hasRole("USER") // USER 권한 가진 경우만
             .anyRequest().authenticated() // 인증만 되면 접근 가능
+        );
+        
+        // 로그아웃 설정
+        http.logout(logout -> logout
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login")               // 로그아웃 후 이동할 URL
+            .invalidateHttpSession(true)              // ✅ 세션 무효화
+            .deleteCookies("JSESSIONID")              // ✅ JSESSIONID 쿠키 삭제
+            .clearAuthentication(true)                // ✅ SecurityContext에서 인증 정보 제거
         );
 
         log.info("------------------------Security Configure End---------------------------");

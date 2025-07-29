@@ -26,27 +26,25 @@ public class UserAuthDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("loadUser ByUserName : " + username);
-		UserVO userVo = userService.findById(username);
 		
-		if(userVo == null) {
+		try {
+			UserVO userVo = userService.findById(username);
+			
+			log.info("----------------------------------");
+			log.info(userVo.toString());
+			
+			// false는 아직 미구현한 소셜 로그인
+			UserAuthDto userAuthDTO = new UserAuthDto(
+				userVo.getId(),
+				userVo.getPassword(),
+				userVo,
+				userVo.getAuthList().stream().map(auth -> new SimpleGrantedAuthority(auth.getAuthority())).collect(Collectors.toSet())
+			);
+			userAuthDTO.setName(userVo.getName());
+			
+			return userAuthDTO;
+		} catch (Exception e) {
 			throw new UsernameNotFoundException("사용자가 존재하지 않음");
 		}
-
-		
-		log.info("----------------------------------");
-		log.info(userVo.toString());
-		System.out.println(userVo.toString());
-		
-		
-		// false는 아직 미구현한 소셜 로그인
-		UserAuthDto userAuthDTO = new UserAuthDto(
-			userVo.getId(),
-			userVo.getPassword(),
-			userVo,
-			userVo.getAuthList().stream().map(auth -> new SimpleGrantedAuthority(auth.getAuthority())).collect(Collectors.toSet())
-		);
-		userAuthDTO.setName(userVo.getNick());
-		
-		return userAuthDTO;
 	}
 }

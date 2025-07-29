@@ -158,6 +158,12 @@
 		    <artifactId>ojdbc8</artifactId>
 		    <version>19.3.0.0</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -225,7 +231,7 @@
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
-		    <version>3.5.13</version>
+		    <version>3.5.15</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.mybatis</groupId>

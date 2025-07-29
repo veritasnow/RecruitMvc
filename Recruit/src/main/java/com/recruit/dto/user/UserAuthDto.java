@@ -15,13 +15,10 @@ import lombok.Setter;
 @Setter
 public class UserAuthDto extends User implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	private String name;
-	private int fromSocial;
 	private UserVO userVO;
 
 	public UserAuthDto(String username, String password, UserVO userVO, Collection<? extends GrantedAuthority> authorities) {

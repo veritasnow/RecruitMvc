@@ -14,7 +14,7 @@
 	            <!-- 로그인한 사용자 닉네임 출력 -->
 	            <sec:authorize access="isAuthenticated()">
 	                <li class="nick">
-                        <sec:authentication property="principal.userVO.nick" />
+                        <sec:authentication property="principal.userVO.name" />
 	                </li>
 	            </sec:authorize>
 	

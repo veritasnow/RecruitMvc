@@ -18,13 +18,13 @@ import lombok.ToString;
 @ToString
 public class UserVO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String id;
+	private String name;
 	private String email;
-	private String nick;
+	private String phone;
+	private String birth;
 	private String password;
 	private List<AuthVO> authList;
 }
