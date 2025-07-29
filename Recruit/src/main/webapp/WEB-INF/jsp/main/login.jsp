@@ -8,7 +8,7 @@
 	        <div class="inforBox">
 	            <h2>로그인</h2>
 	        </div>
-			<form method="post" id="loginForm">
+			<form method="post" id="loginForm" action="/doLogin">
 			    <!-- CSRF 토큰 수동 삽입 -->
 			    <c:if test="${not empty _csrf}">
 			        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

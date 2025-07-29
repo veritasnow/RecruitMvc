@@ -21,7 +21,7 @@
 <link href="/static/css/reset.css"      rel="stylesheet">
 <link href="/static/css/style.css"      rel="stylesheet">
 <link href="/static/css/login.css"      rel="stylesheet">
-<link href="/static/css/sidebar.css"      rel="stylesheet">
+<link href="/static/css/sidebar.css"    rel="stylesheet">
 
 
 <!-- js -->

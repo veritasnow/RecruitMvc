@@ -4,6 +4,7 @@ package com.recruit.controller.login;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.recruit.router.Route;
 import com.recruit.router.Router;
@@ -23,4 +24,12 @@ public class LoginController {
 		return ViewConstants.INDEX;		
 	}
 	
+	
+	@PostMapping("/loginFailed")
+	public String loginFailed(Model model) {
+		log.info("--------------- 로그인 실패 --------------");
+		Route route = Router.getInstance().getRoute("login");
+		model.addAttribute("route", route);
+		return ViewConstants.INDEX;		
+	}	
 }

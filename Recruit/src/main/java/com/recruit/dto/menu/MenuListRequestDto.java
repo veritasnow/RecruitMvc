@@ -3,7 +3,7 @@ package com.recruit.dto.menu;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.recruit.vo.menu.Menu;
+import com.recruit.vo.menu.MenuVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +30,8 @@ public class MenuListRequestDto {
     //@Pattern(regexp = "^/[a-zA-Z0-9/_\\-]*$", message = "URL은 슬래시(/)로 시작하고, 영문자, 숫자, 언더스코어(_)만 포함할 수 있습니다.")
     private String url;
 
-    public Menu toEntity() {
-        return Menu.builder()
+    public MenuVO toEntity() {
+        return MenuVO.builder()
                    .id(this.id)
                    .name(this.name)
                    .url(this.url)

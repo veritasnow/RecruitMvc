@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.recruit.security.filter.CspHeaderFilter;
 import com.recruit.security.filter.SqlInjectionFilter;
@@ -45,16 +46,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         log.info("------------------------Security Configure Start---------------------------");
 
+        // 커스텀 필터 등록
         http
             .addFilterBefore(cspHeaderFilter, BasicAuthenticationFilter.class)
             .addFilterBefore(xssFilter, BasicAuthenticationFilter.class)
-            .addFilterBefore(sqlInjectionFilter, BasicAuthenticationFilter.class)
-            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+            .addFilterBefore(sqlInjectionFilter, BasicAuthenticationFilter.class);
 
-        http.headers().frameOptions().sameOrigin(); // iframe 허용 설정
+        // iframe 허용 설정
+        http.headers().frameOptions().sameOrigin();
 
-        // 로그인 및 로그아웃 설정 비활성화된 부분은 주석 처리로 유지
-        /*
+        // 로그인 설정
         http.formLogin(form -> form
             .loginPage("/login")
             .loginProcessingUrl("/doLogin")
@@ -64,22 +65,18 @@ public class SecurityConfig {
             .failureForwardUrl("/loginFailed")
         );
 
-        http.logout(logout -> logout
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .invalidateHttpSession(true)
-            .deleteCookies("JSESSIONID")
-            .logoutSuccessUrl("/main")
-        );
-
+        // 권한 설정
         http.authorizeHttpRequests(auth -> auth
-            .antMatchers("/user/login").permitAll()
-            .antMatchers("/user/join").permitAll()
-            .antMatchers("/admin/**").hasRole("ADMIN")
+            .requestMatchers(
+                new AntPathRequestMatcher("/login"),
+                new AntPathRequestMatcher("/doLogin"),
+                new AntPathRequestMatcher("/static/**")      // 정적 리소스 허용
+            ).permitAll()
+            .requestMatchers(new AntPathRequestMatcher("/main")).hasRole("USER") // USER 권한 가진 경우만
+            .anyRequest().authenticated() // 인증만 되면 접근 가능
         );
-        */
 
         log.info("------------------------Security Configure End---------------------------");
-
         return http.build();
     }
 }
