@@ -17,5 +17,5 @@ public class MainController {
 		model.addAttribute("route", route);
 		
 		return ViewConstants.INDEX;
-	}	
+	}
 }
