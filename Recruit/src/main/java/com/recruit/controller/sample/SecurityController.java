@@ -16,11 +16,11 @@ public class SecurityController {
     /**
      * 보안관련
      */
-    @GetMapping("/form")
+    @GetMapping("/sample")
     public String showValidationForm(Model model) {
         Route route = Router.getInstance().getRoute("security");
         model.addAttribute("route", route);
-        return ViewConstants.INDEX;
+        return ViewConstants.IFRAME_INDEX;
     }
 
 }

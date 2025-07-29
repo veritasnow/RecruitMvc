@@ -18,7 +18,6 @@ public class Router {
         map.put("login"       , new Route("/WEB-INF/jsp/main/login"));        
         
         
-        map.put("security"    , new Route("header", "/WEB-INF/jsp/security/security" , "footer"));
         map.put("excel"       , new Route("header", "/WEB-INF/jsp/sample/excel/excel", "footer"));
 
         
@@ -39,6 +38,11 @@ public class Router {
         map.put("validation", new Route("/WEB-INF/jsp/iframe/sample/validation/validation"));
         map.put("popup"     , new Route("/WEB-INF/jsp/iframe/sample/popup/popup"));
         map.put("file"      , new Route("/WEB-INF/jsp/iframe/sample/file/file"));
+        map.put("security"  , new Route("/WEB-INF/jsp/iframe/sample/security/security"));       
+        
+        
+        
+        
         
         // 2-1. 추후에 iframe용 예외 페이지 만들어야함...!!
         

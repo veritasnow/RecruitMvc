@@ -46,10 +46,11 @@ public class MenuController {
 	    List<MenuListResponseDto> result = new ArrayList<>();
 
 	    // 2. 항목 추가
-	    result.add(new MenuListResponseDto("validSample", "유효성검증 샘플", "validation/sample"));
-	    result.add(new MenuListResponseDto("popupSample", "팝업/PDF샘플", "popup/sample"));
-	    result.add(new MenuListResponseDto("fileSample" , "파일 샘플", "file/sample"));
-
+	    result.add(new MenuListResponseDto("validSample"    , "유효성검증 샘플", "validation/sample"));
+	    result.add(new MenuListResponseDto("popupSample"    , "팝업/PDF샘플" , "popup/sample"));
+	    result.add(new MenuListResponseDto("fileSample"     , "파일 샘플"    , "file/sample"));
+	    result.add(new MenuListResponseDto("securitySample" , "보안 샘플"    , "security/sample"));
+	    
 	    return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 		
@@ -73,6 +74,8 @@ public class MenuController {
 	    result.add(new MenuListResponseDto("validSample", "유효성검증 샘플", "validation/sample"));
 	    result.add(new MenuListResponseDto("sample2", "샘플2", "sample/page2"));
 	    result.add(new MenuListResponseDto("sample3", "샘플3", "sample/page3"));
+	    
+	    
 
 	    return new ResponseEntity<>(result, HttpStatus.OK);
 	}		
