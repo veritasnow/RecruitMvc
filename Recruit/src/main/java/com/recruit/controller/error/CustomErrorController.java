@@ -1,8 +1,6 @@
 package com.recruit.controller.error;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,43 +15,40 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomErrorController {
 
-    @RequestMapping("/error")
-    public String handleError(HttpServletRequest request, HttpServletResponse response, Model model) {
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        String uri = (String) request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI); // 에러 발생한 요청 URI
-        Router router = Router.getInstance();
+    private final Router router = Router.getInstance();
 
-        // 특정 경로일 경우 별도 처리 (예: .well-known 관련 요청)
-        if (uri != null && uri.startsWith("/.well-known")) {
-            log.info("Ignoring .well-known error for URI: {}", uri);
-            response.setStatus(HttpServletResponse.SC_NO_CONTENT); // 204 No Content
-            return null; // 뷰 렌더링 없이 응답 종료
-        }
+    @RequestMapping("/error/403")
+    public String handle403(HttpServletRequest request, Model model) {
+        log.info("403 Forbidden error 발생! 요청 URI: {}", request.getRequestURI());
+        model.addAttribute("route", router.getRoute("forbidden"));
+        return ViewConstants.INDEX;
+    }
 
-        if (status != null) {
-            int statusCode = Integer.parseInt(status.toString());
-            log.info("error 발생!!! -- Code: " + statusCode);
+    @RequestMapping("/error/404")
+    public String handle404(HttpServletRequest request, Model model) {
+        log.info("404 Not Found error 발생! 요청 URI: {}", request.getRequestURI());
+        model.addAttribute("route", router.getRoute("notFoundPage"));
+        return ViewConstants.INDEX;
+    }
 
-            switch (statusCode) {
-                case 404:
-                    log.info("error 발생!!! -- notFoundPage");
-                    model.addAttribute("route", router.getRoute("notFoundPage"));
-                    break;
-                case 405:
-                    log.info("error 발생!!! -- methodNotAllowedPage");
-                    model.addAttribute("route", router.getRoute("methodNotAllowedPage"));
-                    break;
-                case 403:
-                    log.info("error 발생!!! -- forbidden");
-                    model.addAttribute("route", router.getRoute("errorPage"));
-                    break;
-                default:
-                    log.info("error 발생!!! -- 기타 에러");
-                    model.addAttribute("route", router.getRoute("errorPage"));
-                    break;
-            }
-        }
+    @RequestMapping("/error/405")
+    public String handle405(HttpServletRequest request, Model model) {
+        log.info("405 Method Not Allowed error 발생! 요청 URI: {}", request.getRequestURI());
+        model.addAttribute("route", router.getRoute("methodNotAllowed"));
+        return ViewConstants.INDEX;
+    }
 
+    @RequestMapping("/error/500")
+    public String handle500(HttpServletRequest request, Model model) {
+        log.info("500 Internal Server Error 발생! 요청 URI: {}", request.getRequestURI());
+        model.addAttribute("route", router.getRoute("serverError"));
+        return ViewConstants.INDEX;
+    }
+
+    @RequestMapping("/error/exception")
+    public String handleException(HttpServletRequest request, Model model) {
+        log.info("Exception 발생! 요청 URI: {}", request.getRequestURI());
+        model.addAttribute("route", router.getRoute("generalError"));
         return ViewConstants.INDEX;
     }
 }

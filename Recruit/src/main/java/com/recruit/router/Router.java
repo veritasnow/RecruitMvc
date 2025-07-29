@@ -14,12 +14,17 @@ public class Router {
         Map<String, Route> map = new HashMap<>();
         
         // 1. main용 라우터목록
-        map.put("main"      , new Route("header", "/WEB-INF/jsp/main/main", "footer"));
-        map.put("security"  , new Route("header", "/WEB-INF/jsp/security/security", "footer"));
-        map.put("pdf"       , new Route("header", "/WEB-INF/jsp/sample/pdf/pdf", "footer"));
-        map.put("excel"     , new Route("header", "/WEB-INF/jsp/sample/excel/excel", "footer"));
-        map.put("file"      , new Route("header", "/WEB-INF/jsp/sample/file/file", "footer"));
-                
+        map.put("main"        , new Route("header", "/WEB-INF/jsp/main/main"         , "footer"));
+        map.put("security"    , new Route("header", "/WEB-INF/jsp/security/security" , "footer"));
+        map.put("excel"       , new Route("header", "/WEB-INF/jsp/sample/excel/excel", "footer"));
+
+        
+        // 1-1. main 예외페이지 403,404, 405, 500, 기타예외
+        map.put("forbidden"       , new Route("header", "/WEB-INF/jsp/error/forbidden"          , "footer"));
+        map.put("notFoundPage"    , new Route("header", "/WEB-INF/jsp/error/not-found"          , "footer"));
+        map.put("methodNotAllowed", new Route("header", "/WEB-INF/jsp/error/method-not-allowed" , "footer"));
+        map.put("serverError"     , new Route("header", "/WEB-INF/jsp/error/server-error"       , "footer"));
+        map.put("generalError"    , new Route("header", "/WEB-INF/jsp/error/general-error"      , "footer"));
 
         
 
@@ -42,7 +47,10 @@ public class Router {
         
         
         
-        map.put("notFoundPage", new Route("header", "/WEB-INF/jsp/error/notFoundPage", "footer"));
+        
+        
+        
+        
 
         routeMap = Collections.unmodifiableMap(map);
     }

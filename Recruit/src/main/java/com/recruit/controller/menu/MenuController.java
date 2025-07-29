@@ -43,7 +43,7 @@ public class MenuController {
 
 	    // 2. 항목 추가
 	    result.add(new MenuListResponseDto("validSample", "유효성검증 샘플", "validation/sample"));
-	    result.add(new MenuListResponseDto("popupSample", "팝업 샘플", "popup/sample"));
+	    result.add(new MenuListResponseDto("popupSample", "팝업/PDF샘플", "popup/sample"));
 	    result.add(new MenuListResponseDto("fileSample" , "파일 샘플", "file/sample"));
 
 	    return new ResponseEntity<>(result, HttpStatus.OK);
