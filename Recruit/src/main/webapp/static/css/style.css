@@ -32,6 +32,47 @@ html, body, #wrap, #container, #containerIn {
 	margin-right: auto;
 }
 
+.logo {
+	position: absolute;
+	top: 1.0rem;
+	left: 50%;
+	margin-left: -3rem;
+}
+
+.logo a {
+	display: block;
+	width: 68px;
+	height: 25px;
+	text-indent: -9999px;
+	background-image: url(../img/logo.png);
+	background-position: center;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+}
+
+.loginAndCreate {
+	position: absolute;
+	top: 1.0rem;
+	right: 2.0rem;
+}
+
+
+.loginAndCreate .nick {
+	margin-right: 1rem;
+}
+
+.loginAndCreate li {
+	float: left;
+}
+
+.loginAndCreate li:last-child {
+	margin-left: 1rem;
+}
+
+.loginAndCreate li a {
+	color: #151515;
+}
+
 
 #container {
 	min-height: 100%;

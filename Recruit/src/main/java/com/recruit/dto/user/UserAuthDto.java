@@ -22,11 +22,11 @@ public class UserAuthDto extends User implements Serializable {
 	private String id;
 	private String name;
 	private int fromSocial;
-	private UserVO userVo;
+	private UserVO userVO;
 
-	public UserAuthDto(String username, String password, UserVO userVo, Collection<? extends GrantedAuthority> authorities) {
+	public UserAuthDto(String username, String password, UserVO userVO, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
 		this.id         = username;
-		this.userVo     = userVo;
+		this.userVO     = userVO;
 	}
 }
