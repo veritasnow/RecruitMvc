@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+
+    <!-- 로그파일 저장 경로 -->
+    <Properties>
+        <Property name="logPath">C:\\log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %5p [%c] %m%n" />
+        </Console>
+
+        <Routing name="logFile">
+	        <Routes pattern="$${ctx:empno:-common}">
+	            <Route>
+	                <RollingFile name="Rolling-${ctx:empno}"
+	                             fileName="${logPath}/${ctx:empno:-common}/log.txt"
+	                             filePattern="${logPath}/${ctx:empno:-common}/log.%d{yyyyMMdd}.txt">
+	                    <PatternLayout>
+	                        <Pattern>%d [%t] %-5level %logger - %msg%n</Pattern>
+	                    </PatternLayout>
+	                    <Policies>
+	                        <TimeBasedTriggeringPolicy />
+	                    </Policies>
+	                </RollingFile>
+	            </Route>
+	        </Routes>
+        </Routing>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="java.sql" level="OFF" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+		<Logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <Logger name="jdbc.sqltiming" level="OFF" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+		<Logger name="jdbc.audit" level="OFF" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+        <Logger name="jdbc.resultsettable" level="OFF" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+		<Logger name="jdbc.resultset" level="OFF" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+	    <!-- Spring Security 로그 줄이기 -->
+	    <Logger name="org.springframework.security" level="INFO" additivity="false">
+	        <AppenderRef ref="console" />
+	    </Logger>
+
+        <Logger name="org.springframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+	    <!-- FilterSecurityInterceptor 끔 -->
+	    <Logger name="org.springframework.security.web.access.intercept.FilterSecurityInterceptor" level="OFF" additivity="false">
+	        <AppenderRef ref="console" />
+	    </Logger>
+
+        <Root level="DEBUG">
+		    <AppenderRef ref="console"/> <!-- 콘솔     -->
+		    <AppenderRef ref="logFile"/> <!-- 로그파일 -->
+		</Root>
+    </Loggers>
+</Configuration>

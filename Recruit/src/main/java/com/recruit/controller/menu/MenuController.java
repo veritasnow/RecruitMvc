@@ -19,16 +19,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.recruit.dto.menu.MenuListRequestDto;
 import com.recruit.dto.menu.MenuListResponseDto;
 
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
-
 
 	// REST용 JSON 반환 메서드 추가
 	@GetMapping(value = "/list", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<?> restTest(@Valid MenuListRequestDto menuListRequestDto, BindingResult bindingResult) {
+		log.info("------------------------------------메뉴리스트 조회--------------------------------");
+		
 	    if (bindingResult.hasErrors()) {
 	        // 간단하게 첫 에러 메시지 리턴
 	        String errorMessage = bindingResult.getAllErrors().get(0).getDefaultMessage();
