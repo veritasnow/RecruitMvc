@@ -191,4 +191,94 @@ const formatUtil = {
 		};
 		return `${formatPart(parts[0])} - ${formatPart(parts[1])}`;
 	},
+	/**
+	 * 주민등록번호 포맷팅 (예: 9001011234567 -> 900101-1234567)
+	 * @param {string} value - 주민등록번호 문자열
+	 * @returns {string} 포맷된 주민등록번호
+	 */
+	formatSSN: function(value) {
+		if (!value) return '';
+		const digits = value.replace(/\D/g, '');
+		if (digits.length !== 13) return value;
+		return digits.replace(/(\d{6})(\d{7})/, '$1-$2');
+	},
+
+	/**
+	 * 사업자등록번호 포맷팅 (예: 1234512345 -> 123-45-12345)
+	 * @param {string} value - 사업자등록번호 문자열
+	 * @returns {string} 포맷된 사업자등록번호
+	 */
+	formatBusinessNumber: function(value) {
+		if (!value) return '';
+		const digits = value.replace(/\D/g, '');
+		if (digits.length !== 10) return value;
+		return digits.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3');
+	},
+
+	/**
+	 * 숫자를 퍼센트 문자열로 변환 (예: 0.25 -> "25%")
+	 * @param {number|string} value - 숫자 또는 문자열
+	 * @returns {string} 퍼센트 형식 문자열
+	 */
+	formatPercent: function(value) {
+		if (value == null) return '';
+		const num = Number(value);
+		if (isNaN(num)) return '';
+		return `${(num * 100).toFixed(2)}%`;
+	},
+
+	/**
+	 * 문자열을 대문자로 변환
+	 * @param {string} value - 입력 문자열
+	 * @returns {string} 대문자로 변환된 문자열
+	 */
+	toUpperCase: function(value) {
+		if (!value) return '';
+		return value.toUpperCase();
+	},
+
+	/**
+	 * 문자열을 첫 글자만 대문자로 변환 (capitalize)
+	 * @param {string} value - 입력 문자열
+	 * @returns {string} Capitalized 문자열
+	 */
+	capitalize: function(value) {
+		if (!value) return '';
+		return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+	},
+
+	/**
+	 * 은행 계좌번호 하이픈 포맷팅 (예: 12345678901234 -> 123-456-78901234)
+	 * @param {string} value - 계좌번호 문자열
+	 * @returns {string} 포맷된 계좌번호
+	 */
+	formatBankAccount: function(value) {
+		if (!value) return '';
+		const digits = value.replace(/\D/g, '');
+		if (digits.length < 9) return value;
+		return digits.replace(/(\d{3})(\d{3})(\d+)/, '$1-$2-$3');
+	},
+
+	/**
+	 * 시간 문자열 포맷팅 (예: "1305" -> "13:05")
+	 * @param {string} value - 시간 문자열
+	 * @returns {string} 포맷된 시간 (HH:mm)
+	 */
+	formatTimeHHMM: function(value) {
+		if (!value) return '';
+		const digits = value.replace(/\D/g, '');
+		if (digits.length !== 4) return value;
+		return digits.replace(/(\d{2})(\d{2})/, '$1:$2');
+	},
+
+	/**
+	 * 문자열에서 숫자만 추출
+	 * @param {string} value - 입력 문자열
+	 * @returns {string} 숫자만 포함된 문자열
+	 */
+	extractDigits: function(value) {
+		if (!value) return '';
+		return value.replace(/\D/g, '');
+	},	
+	
 };
