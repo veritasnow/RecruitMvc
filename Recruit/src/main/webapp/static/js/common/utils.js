@@ -86,7 +86,30 @@ const selectUtils = {
   getAllOptions: function(selectElem) {
     if (!selectElem) return [];
     return Array.from(selectElem.options).map(opt => ({ text: opt.text, value: opt.value }));
-  }
+  },
+  
+  /**
+   * select 요소 읽기전용 설정 (disabled와 구분)
+   * readonly 상태면 클릭, 변경 못 하도록 막음
+   * @param {HTMLSelectElement} selectElem
+   * @param {boolean} isReadonly
+   */
+  setReadonly: function(selectElem, isReadonly) {
+    if (!selectElem) return;
+
+    if (isReadonly) {
+      // 클릭/변경 이벤트 막기
+      selectElem.addEventListener('mousedown', preventEvent);
+      selectElem.addEventListener('keydown', preventEvent);
+      selectElem.style.pointerEvents = 'none';  // 클릭 막기 (보조)
+      selectElem.style.backgroundColor = '#eee'; // 읽기전용 느낌 스타일
+    } else {
+      selectElem.removeEventListener('mousedown', preventEvent);
+      selectElem.removeEventListener('keydown', preventEvent);
+      selectElem.style.pointerEvents = '';
+      selectElem.style.backgroundColor = '';
+    }
+  }  
 };
 
 
@@ -146,5 +169,86 @@ const radioUtils = {
     radios.forEach(radio => {
       radio.checked = radio.value === value;
     });
+  },
+  
+  /**
+   * 라디오 버튼 그룹 읽기전용 설정 (disabled와 구분)
+   * 클릭 및 변경 못 하게 막음
+   * @param {string} name - 라디오 그룹 name
+   * @param {boolean} isReadonly
+   */
+  setReadonly: function(name, isReadonly) {
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    radios.forEach(radio => {
+      if (isReadonly) {
+        // 클릭 이벤트 차단
+        radio.addEventListener('click', preventEventRadio);
+        radio.style.cursor = 'not-allowed';
+      } else {
+        radio.removeEventListener('click', preventEventRadio);
+        radio.style.cursor = '';
+      }
+    });
+  }  
+};
+
+
+
+const inputUtils = {
+  /**
+   * input 요소에 여러 속성을 세팅 (id, name, value, type, placeholder 등)
+   * @param {HTMLInputElement} inputElem
+   * @param {Object} props - { id, name, value, type, placeholder, readonly, disabled }
+   */
+  setInput: function(inputElem, props) {
+    if (!inputElem || typeof props !== 'object') return;
+    
+    if (props.id !== undefined) inputElem.id = props.id;
+    if (props.name !== undefined) inputElem.name = props.name;
+    if (props.type !== undefined) inputElem.type = props.type;
+    if (props.value !== undefined) inputElem.value = props.value;
+    if (props.placeholder !== undefined) inputElem.placeholder = props.placeholder;
+    if (props.readonly !== undefined) inputElem.readOnly = Boolean(props.readonly);
+    if (props.disabled !== undefined) inputElem.disabled = Boolean(props.disabled);
+  },
+
+  /**
+   * input 요소의 현재 값을 반환
+   * @param {HTMLInputElement} inputElem
+   * @returns {string|null}
+   */
+  getValue: function(inputElem) {
+    if (!inputElem) return null;
+    return inputElem.value;
+  },
+
+  /**
+   * input 요소 값(value) 설정
+   * @param {HTMLInputElement} inputElem
+   * @param {string} value
+   */
+  setValue: function(inputElem, value) {
+    if (!inputElem) return;
+    inputElem.value = value;
+  },
+
+  /**
+   * input 요소 읽기전용 속성 설정/해제
+   * @param {HTMLInputElement} inputElem
+   * @param {boolean} isReadonly
+   */
+  setReadonly: function(inputElem, isReadonly) {
+    if (!inputElem) return;
+    inputElem.readOnly = Boolean(isReadonly);
+  },
+
+  /**
+   * input 요소 disabled 속성 설정/해제
+   * @param {HTMLInputElement} inputElem
+   * @param {boolean} isDisabled
+   */
+  setDisabled: function(inputElem, isDisabled) {
+    if (!inputElem) return;
+    inputElem.disabled = Boolean(isDisabled);
   }
 };

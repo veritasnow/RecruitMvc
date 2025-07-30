@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+    <title>MGDS | 퍼블리싱 가이드</title>
+
+    <link rel="shortcut icon" href="./../images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="./../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/modules.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb_mo.css" />
+
+    <script type="text/javascript" src="./../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./../js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="./../js/guide_pb.js"></script>
+    
+    <script src="./../js/dropzone.js"></script>    
+    <link rel="stylesheet" href="./../css/dropzone.css">
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="aside"></div>
+
+      <div class="guide-content">
+        <section class="guide-section">
+          <!-- type='text' -->
+          <div class="section">
+            <p class="section-title">type='text'</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 + 더뱅킹 UI 참고</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>기본</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <input type="text" placeholder="텍스트를 입력하세요.">
+                          <button type="button" class="del-btn" style="display: none;">텍스트 삭제</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td>작성하는 내용이 금액 일 경우,  input안 텍스트를 우측 정렬 한다.</td>
+                  </tr>
+                  <tr>
+                    <td>기본+안내문구</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <input type="text" placeholder="텍스트를 입력하세요.">
+                          <button type="button" class="del-btn" style="display: none;">텍스트 삭제</button>
+                        </div>
+                        <p class="guide-txt">안내문구 입니다.</p>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>기본+입력상태</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <input type="text" placeholder="텍스트를 입력하세요." value="입력값">
+                          <button type="button" class="del-btn" style="display: none;">텍스트 삭제</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>readonly</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <input type="text" placeholder="텍스트를 입력하세요." value="입력값" readonly>
+                          <button type="button" class="del-btn" style="display: none;">텍스트 삭제</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>disabled</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <input type="text" placeholder="텍스트를 입력하세요." value="입력값" disabled>
+                          <button type="button" class="del-btn" style="display: none;">텍스트 삭제</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>error</td>
+                    <td>
+                      <div class="input-item error">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <input type="text" placeholder="텍스트를 입력하세요." value="입력값">
+                          <button type="button" class="del-btn" style="display: none;">텍스트 삭제</button>
+                        </div>
+                        <p class="guide-txt">에러입니다.</p>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //type='text' -->
+
+          <!-- type='textarea' -->
+          <div class="section">
+            <p class="section-title">textarea</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 + 더뱅킹 UI 참고</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>기본</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <textarea placeholder="텍스트를 입력하세요."></textarea>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>기본+안내문구</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <textarea placeholder="텍스트를 입력하세요."></textarea>
+                        </div>
+                        <p class="guide-txt">안내문구 입니다.</p>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>기본+입력상태</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <textarea>입력값</textarea>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>readonly</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <textarea readonly>입력값</textarea>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>disabled</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <textarea disabled>입력값</textarea>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>error</td>
+                    <td>
+                      <div class="input-item error">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont">
+                          <textarea>입력값</textarea>
+                        </div>
+                        <p class="guide-txt">에러입니다.</p>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //type='textarea' -->
+
+          <!-- type='radio' -->
+          <div class="section">
+            <p class="section-title">type='radio'</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 + 더뱅킹 UI 참고</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>기본형</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="radio-wrap">
+                          <div class="input-cont line-type">
+                            <input type="radio" id="radio-1-01" name="radio-1" checked>
+                            <label for="radio-1-01">
+                              <p>radio-1-01</p>
+                            </label>
+                          </div>
+                          
+                          <div class="input-cont line-type">
+                            <input type="radio" id="radio-1-02" name="radio-1">
+                            <label for="radio-1-02">
+                              <p>radio-1-02</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>박스형</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="radio-wrap">
+                          <div class="input-cont box-type">
+                            <input type="radio" id="radio-2-01" name="radio-2" checked>
+                            <label for="radio-2-01">
+                              <p>radio-2-01</p>
+                            </label>
+                          </div>
+                          
+                          <div class="input-cont box-type">
+                            <input type="radio" id="radio-2-02" name="radio-2">
+                            <label for="radio-2-02">
+                              <p>radio-2-02</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>readonly</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="radio-wrap">
+                          <div class="input-cont line-type">
+                            <input type="radio" id="radio-3-01" name="radio-3" class="readonly" onclick="return(false);" checked>
+                            <label for="radio-3-01">
+                              <p>라인형</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont box-type">
+                            <input type="radio" id="radio-4-02" name="radio-4" class="readonly" onclick="return(false);" checked>
+                            <label for="radio-4-02">
+                              <p>박스형</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>disabled</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="radio-wrap">
+                          <div class="input-cont line-type">
+                            <input type="radio" id="radio-5-01" name="radio-5" checked disabled>
+                            <label for="radio-5-01">
+                              <p>라인형</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont box-type">
+                            <input type="radio" id="radio-6-02" name="radio-6" checked disabled>
+                            <label for="radio-6-02">
+                              <p>박스형</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //type='radio' -->
+
+          <!-- type='checkbox' -->
+          <div class="section">
+            <p class="section-title">type='checkbox'</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 + 더뱅킹 UI 참고</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1depth</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="check-wrap">
+                          <div class="input-cont check-typeA">
+                            <input type="checkbox" id="check1" name="check1">
+                            <label for="check1">
+                              <p>check-typeA</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont check-typeA">
+                            <input type="checkbox" id="check2" name="check2" checked>
+                            <label for="check2">
+                              <p>check-typeA</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                    <td>2depth</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="check-wrap">
+                          <div class="input-cont check-typeB">
+                            <input type="checkbox" id="check1-1" name="check1-1">
+                            <label for="check1-1">
+                              <p>check-typeB</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont check-typeB">
+                            <input type="checkbox" id="check2-1" name="check2-1" checked>
+                            <label for="check2-1">
+                              <p>check-typeB</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                    <td>3depth</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="check-wrap">
+                          <div class="input-cont check-typeC">
+                            <input type="checkbox" id="check1-1-01" name="check1-1-01">
+                            <label for="check1-1-01">
+                              <p>check-typeC</p>
+                            </label>
+                          </div>
+                        
+                          <div class="input-cont check-typeC">
+                            <input type="checkbox" id="check2-1-01" name="check2-1-01" checked>
+                            <label for="check2-1-01">
+                              <p>check-typeC</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>readonly</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="check-wrap">
+                          <div class="input-cont check-typeA">
+                            <input type="checkbox" id="check3" name="check3" class="readonly" checked>
+                            <label for="check3">
+                              <p>check-typeA</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont check-typeB">
+                            <input type="checkbox" id="check3-1" name="check3-1" class="readonly" checked>
+                            <label for="check3-1">
+                              <p>check-typeB</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont check-typeC">
+                            <input type="checkbox" id="check3-1-01" name="check3-1-01" class="readonly" checked>
+                            <label for="check3-1-01">
+                              <p>check-typeC</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>disabled</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="check-wrap">
+                          <div class="input-cont check-typeA">
+                            <input type="checkbox" id="check4" name="check4" checked disabled>
+                            <label for="check4">
+                              <p>check-typeA</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont check-typeB">
+                            <input type="checkbox" id="check4-1" name="check4-1" checked disabled>
+                            <label for="check4-1">
+                              <p>check-typeB</p>
+                            </label>
+                          </div>
+
+                          <div class="input-cont check-typeC">
+                            <input type="checkbox" id="check4-1-01" name="check4-1-01" checked disabled>
+                            <label for="check4-1-01">
+                              <p>check-typeC</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //type='checkbox' -->
+
+          <!-- type='select' -->
+          <div class="section">
+            <p class="section-title">type='select'</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 + 더뱅킹 UI 참고</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>bottom</td>
+                    <td>
+                      <div class="select-wrap">
+                        <div class="select-box bottom-typeA">
+                          <button type="button" class="select-btn">select</button>
+                          <ul class="option-list" style="display: none;">
+                            <li><button type="button">bottom-option01</button></li>
+                            <li><button type="button">bottom-option02</button></li>
+                            <li><button type="button">bottom-option03</button></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>bottom</td>
+                    <td>
+                      <div class="select-wrap">
+                        <div class="select-box bottom-typeB">
+                          <button type="button" class="select-btn">select</button>
+                          <ul class="option-list " style="display: none;">
+                            <li><button type="button">bottom-option01</button></li>
+                            <li><button type="button">bottom-option02</button></li>
+                            <li><button type="button">bottom-option03</button></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>top</td>
+                    <td>
+                      <div class="select-wrap">
+                        <div class="select-box top-typeA">
+                          <button type="button" class="select-btn">select</button>
+                          <ul class="option-list" style="display: none;">
+                            <li><button type="button">top-option01</button></li>
+                            <li><button type="button">top-option02</button></li>
+                            <li><button type="button">top-option03</button></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>top</td>
+                    <td>
+                      <div class="select-wrap">
+                        <div class="select-box top-typeB">
+                          <button type="button" class="select-btn">select</button>
+                          <ul class="option-list" style="display: none;">
+                            <li><button type="button">top-option01</button></li>
+                            <li><button type="button">top-option02</button></li>
+                            <li><button type="button">top-option03</button></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //type='select' -->
+
+          <!-- //type='file' -->
+          <div class="section">
+            <p class="section-title">type='file'</p>
+            <div class="notice-box">
+              <p>신규 추가 / 추후 협의 필요</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>기본</td>
+                    <td>
+                      <div class="input-item">
+                        <p class="input-tit">타이틀</p>
+                        <div class="input-cont file-type">
+                          <p class="file-name"></p>
+                          <input type="file" size="20" id="file" name="thumb">
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>기본+안내문구</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="input-cont file-type">
+                          <p class="file-name"></p>
+                          <input type="file" size="20" id="file" name="thumb">
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                        <p class="guide-txt">첨부 할 수 있는 파일의 확장자는 png, jpg, jpge만 가능합니다.</p>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>기본+입력상태</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="input-cont file-type">
+                          <p class="file-name">test.jpg</p>
+                          <input type="file" size="20" id="file" name="thumb">
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>readonly</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="input-cont file-type readonly">
+                          <p class="file-name"></p>
+                          <input type="file" size="20" id="file" name="thumb" readonly>
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="input-item" style="margin-top: 8px;">
+                        <div class="input-cont file-type readonly">
+                          <p class="file-name">test.png</p>
+                          <input type="file" size="20" id="file" name="thumb" readonly>
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>disabled</td>
+                    <td>
+                      <div class="input-item">
+                        <div class="input-cont file-type disabled">
+                          <p class="file-name"></p>
+                          <input type="file" size="20" id="file" name="thumb" disabled>
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="input-item" style="margin-top: 8px;">
+                        <div class="input-cont file-type disabled">
+                          <p class="file-name">test.png</p>
+                          <input type="file" size="20" id="file" name="thumb" disabled>
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>error</td>
+                    <td>
+                      <div class="input-item error">
+                        <div class="input-cont file-type">
+                          <p class="file-name"></p>
+                          <input type="file" size="20" id="file" name="thumb">
+                          <label for="file">
+                            <div class="btn-upload">파일 선택</div>
+                          </label>
+                        </div>
+                        <p class="guide-txt">에러입니다.</p>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>드롭</td>
+                    <td>
+                      <form name="fname">
+                        <div class="dropzone" id="fileDropzone"></div> <button id="btn-upload-file">서버전송</button>
+                      </form>
+                    </td>
+                    <td>dropzone.js 라이브러리 사용<br> ui 커스텀 필요</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //type='file' -->
+        </section>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>        
+      //fileDropzone dropzone 설정할 태그의 id로 지정
+      Dropzone.options.fileDropzone = {
+          url: 'Fileupload', //업로드할 url (ex)컨트롤러)
+          init: function () {
+              /* 최초 dropzone 설정시 init을 통해 호출 */
+              var submitButton = document.querySelector("#btn-upload-file");
+              var myDropzone = this; //closure
+              submitButton.addEventListener("click", function () {
+                  console.log("업로드"); //tell Dropzone to process all queued files
+                  myDropzone.processQueue();
+              });
+          },
+          autoProcessQueue: false, // 자동업로드 여부 (true일 경우, 바로 업로드 되어지며, false일 경우, 서버에는 올라가지 않은 상태임 processQueue() 호출시 올라간다.)
+          clickable: true, // 클릭가능여부
+          thumbnailHeight: 90, // Upload icon size
+          thumbnailWidth: 90, // Upload icon size
+          maxFiles: 4, // 업로드 파일수
+          maxFilesize: 10, // 최대업로드용량 : 10MB
+          parallelUploads: 1, // 동시파일업로드 수(이걸 지정한 수 만큼 여러파일을 한번에 컨트롤러에 넘긴다.)
+          addRemoveLinks: true, // 삭제버튼 표시 여부
+          dictRemoveFile: '삭제', // 삭제버튼 표시 텍스트
+          uploadMultiple: false, // 다중업로드 기능
+      };
+    </script>
+
+    <script>
+      $('input').on('click focus', function(e){
+        if($(e.target).next('.del-btn').length != 0) {
+          $('.del-btn').hide()
+          $(e.target).next('.del-btn').show()
+        } 
+      })
+
+      $('html').on('click', function(e){
+        if($(e.target).parent('.input-cont').length < 1){
+          $('.del-btn').hide()
+        }
+      })
+
+      txtDelEvent()
+
+      $('.select-btn').on('click', function(){
+        $(this).toggleClass('active');
+        $(this).next('.option-list').slideToggle();
+      })
+
+      $('.option-list li').on('click', function(){
+        var optionVal =  $(this).find('button').html();
+        $(this).closest('.option-list').slideUp();
+        $(this).closest('.select-box').find('.select-btn').removeClass('active').html(optionVal);
+      })
+
+      function txtDelEvent(){
+        $('.del-btn').on('click', function(e){
+          var targetInput = $(e.target).closest('.input-cont').children('input');
+          
+          targetInput.val('').focus();
+        })
+      }
+    </script>
+  </body>
+</html>

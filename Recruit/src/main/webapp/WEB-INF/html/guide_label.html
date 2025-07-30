@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+    <title>MGDS | 퍼블리싱 가이드</title>
+
+    <link rel="shortcut icon" href="./../images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="./../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/modules.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb_mo.css" />
+
+    <script type="text/javascript" src="./../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./../js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="./../js/guide_pb.js"></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="aside"></div>
+
+      <div class="guide-content label-content">
+        <section class="guide-section">
+          <!-- 스타일 -->
+          <div class="section">
+            <p class="section-title">스타일</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 UI 참고</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="flag-wrap">
+                        <span class="flag default">.default</span>
+                        <span class="flag defaultA">.defaultA</span>
+                      </div>
+                    </td>
+                    <td>면으로 색상이 채워진 형태</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="flag-wrap">
+                        <div class="flag defaultB">
+                          <p>.defaultB</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>테두리에 라인으로 표현한 형태</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="flag-wrap">
+                        <div class="flag typeA">
+                          <p>❗typeA</p>
+                        </div>
+                        <div class="flag typeB">
+                          <p>✨typeB</p>
+                        </div>
+                        <div class="flag typeC">
+                          <p>❤️typeC</p>
+                        </div>
+                        <div class="flag typeD">
+                          <p>✔️typeD</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>용도에 따라 다양한 형태</td>
+                    <td>의미 전달을 위해 컬러 혹은 아이콘을 사용해 디자인 된 케이스로 해당 화면에서 한정적으로 사용</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //스타일 -->
+
+          <!-- 툴팁 -->
+          <div class="section">
+            <p class="section-title">툴팁</p>
+            <div class="notice-box">
+              <p>더뱅킹 UI 참고</p>
+            </div>
+            <div class="ex">
+              <div class="tooltip-wrap">
+                물음표를 클릭하세요.
+                <div class="tooltip-btn-wrap">
+                  <button type="button" class="tooltip" aria-disabled="true" role="presentation">
+                    <span class="tooltip-btn">내용 더보기</span>
+                  </button>
+                  <div class="tooltip-box" aria-hidden="true">MGDS TOOLTIP UI</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //툴팁 -->
+
+          <!-- 코치마크 -->
+          <div class="section">
+            <p class="section-title">코치마크</p>
+            <div class="notice-box">
+              <p>더뱅킹 UI 참고</p>
+            </div>
+            <div class="ex">
+              <div class="coachmark-wrap">
+                <div class="tooltip-wrap coachmark-wrap">
+                  coachmark-step1
+                  <div class="tooltip-box on" aria-hidden="true" style="left: 60px;">
+                    <button type="button" class="close-btn type01" data-step="0">닫기</button>
+                    MGDS coach mark step1<br>
+                    닫기 버튼을 클릭하세요.
+                  </div>
+                </div>
+                <div class="tooltip-wrap coachmark-wrap">
+                  coachmark-step2
+                  <div class="tooltip-box" aria-hidden="true" style="left: 60px;">
+                    <button type="button" class="close-btn type01" data-step="1">닫기</button>
+                    MGDS coach mark step2
+                  </div>
+                </div>
+                <div class="tooltip-wrap coachmark-wrap">
+                  coachmark-step3
+                  <div class="tooltip-box" aria-hidden="true" style="left: 60px;">
+                    <button type="button" class="close-btn type01" data-step="2">닫기</button>
+                    MGDS coach mark step3
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //코치마크 -->
+        </section>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+      $(function(){
+        coachMarkFocus()
+      })
+
+      $('.tooltip .tooltip-btn').on('click', function(){
+        $(this).closest('.tooltip-wrap').find('.tooltip-box').toggleClass('on');
+      })
+
+      function coachMarkFocus() {
+        var $steps = $("[data-step]");
+        $steps.each(function (idx) {
+          var $step = $(this);
+          $step.on('click', function(e){
+            var val = $step.val();
+            if (idx + 1 <= $steps.length) {
+              $('.coachmark-wrap').find('.tooltip-box').removeClass('on');
+              $steps[idx + 1].closest('.tooltip-box').className += ' on';
+            }
+          })
+        })
+      }
+    </script>
+  </body>
+</html>

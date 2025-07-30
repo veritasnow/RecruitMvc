@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+    <title>MGDS | 퍼블리싱 가이드</title>
+
+    <link rel="shortcut icon" href="./../images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="./../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/modules.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb_mo.css" />
+
+    <script type="text/javascript" src="./../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./../js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="./../js/guide_pb.js"></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="aside"></div>
+      
+      <div class="guide-content button-content">
+        <section class="guide-section">
+          <div class="section">
+            <div class="ex btn-wrap">
+              <button class="btn-small black" onclick="openResume('compressed.tracemonkey-pldi-09.pdf')">이력서 보기</button>
+              <button class="btn-small white" onclick="openResume('test1.pdf')">이력서 보기</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+    
+    <script>
+      function openResume(fileUrl) {
+        window.open(`/pdfjs/web/viewer.html?file=${fileUrl}`, '_blank');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+    <title>MGDS | 퍼블리싱 가이드</title>
+
+    <link rel="shortcut icon" href="./../images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="./../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/modules.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb_mo.css" />
+
+    <script type="text/javascript" src="./../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./../js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="./../js/guide_pb.js"></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="aside"></div>
+
+      <div class="guide-content">
+        <section class="guide-section">
+          <!-- on/off 기능 -->
+          <div class="section">
+            <p class="section-title">on/off 기능</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 UI 참고</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <colgroup>
+                  <col style="width: 30%" span="2" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="col">유형</th>
+                    <th class="col">스타일</th>
+                    <th class="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>기본</td>
+                    <td>
+                      <div class="switch-wrap">
+                        <div class="switch-item active">
+                          <button type="button" class="switch-btn">ON</button>
+                        </div>
+                        <div class="switch-item">
+                          <button type="button" class="switch-btn">OFF</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>readonly/ disabled</td>
+                    <td>
+                      <div class="switch-wrap">
+                        <div class="switch-item disabled">
+                          <button type="button" class="switch-btn" disabled>OFF</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- //on/off 기능 -->
+
+          <!-- up/down 기능 -->
+          <div class="section">
+            <p class="section-title">up/down 기능</p>
+            <div class="notice-box">
+              <p>공제 웹 참고</p>
+            </div>
+            <div class="ex">
+              <div class="acc-wrap">
+                <div class="acc-item">
+                  <div class="acc-btn"><button data-target="acc1">아코디언 버튼 입니다. <span class="ico down">더보기</span></button></div>
+                  <div class="acc-content acc1" style="display: none;">
+                    아코디언 컨텐츠 입니다.
+                  </div>
+                </div>
+                <div class="acc-item typeA">
+                  <div class="acc-btn"><button data-target="acc2">아코디언 버튼 입니다. <span class="ico down">더보기</span></button></div>
+                  <div class="acc-content acc2" style="display: none;">
+                    아코디언 컨텐츠 입니다.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //up/down 기능 -->
+        </section>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+      $('.switch-btn').off('click').on('click', function(){
+        var switchItem = $(this).closest('.switch-item')
+        switchItem.toggleClass('active')
+        switchItem.hasClass('active') ? $(this).html('ON') : $(this).html('OFF')
+      })
+
+      $('.acc-btn button').each(function(idx){
+        var $this = $(this);
+        $this.on('click', function(e){
+          var layer = $this.data('target');
+
+          var accItem = $this.closest('.acc-item')
+          accItem.find('.down').toggleClass('on');
+          $('.acc-content.' + layer).slideToggle()
+        })
+      })
+    </script>
+  </body>
+</html>

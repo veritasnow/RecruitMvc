@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+    <title>MGDS | 퍼블리싱 가이드</title>
+
+    <link rel="shortcut icon" href="./../images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="./../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/modules.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb_mo.css" />
+
+    <script type="text/javascript" src="./../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./../js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="./../js/guide_pb.js"></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="aside"></div>
+
+      <div class="guide-content">
+        <section class="guide-section">
+          <div class="section ia-section">
+            <p class="section-title">페이지 리스트</p>
+            <div class="notice-box">
+              <p>하단 테이블 내용은 참고자료입니다.</p>
+            </div>
+            <div class="table-wrap">
+              <table class="table vertical">
+                <caption>페이지 리스트</caption>
+                <colgroup>
+                  <col width="10%">
+                  <col width="10%">
+                  <col width="10%">
+                  <col width="15%">
+                  <col width="30%">
+                  <col width="*">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">1Depth</th>
+                    <th scope="col">2Depth</th>
+                    <th scope="col">3Depth</th>
+                    <th scope="col">Page ID/Class Name</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">비고</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>main</td>
+                    <td></td>
+                    <td></td>
+                    <td>#main</td>
+                    <td><a href="javascript:;">/main/index.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td rowspan="10">member</td>
+                    <td class="disabled">회원가입</td>
+                    <td class="disabled"></td>
+                    <td class="disabled">.member-container</td>
+                    <td class="disabled"><a href="javascript:;">/member/index.do</a></td>
+                    <td class="disabled">미사용 페이지</td>
+                  </tr>
+                  <tr>
+                    <td class="row" rowspan="4">회원가입</td>
+                    <td>약관동의</td>
+                    <td>.terms-container</td>
+                    <td><a href="javascript:;">/member/join_terms.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="row">회원 정보 입력</td>
+                    <td>.join-container</td>
+                    <td><a href="javascript:;">/member/join_first.do</a></td>
+                    <td>단독 진입 불가(메인 → <a href="javascript:;">약관동의</a> 진행 이후 접근 가능)</td>
+                  </tr>
+                  <tr>
+                    <td class="row"><span class="flag popup">팝업</span>아이디 중복확인</td>
+                    <td>.id-pop</td>
+                    <td><a href="javascript:;">/member/overlap_id_pop.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="row">완료</td>
+                    <td>.member-container</td>
+                    <td><a href="javascript:;">/member/join_finish.do</a></td>
+                    <td>단독 진입 불가(메인 → <a href="javascript:;">회원가입</a> 이후 접근 가능)</td>
+                  </tr>
+                  <tr>
+                    <td class="row" rowspan="2">로그인</td>
+                    <td></td>
+                    <td>.login-container</td>
+                    <td><a href="javascript:;">/member/login.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="row"><span class="flag ifrm">iframe</span> 2차 인증</td>
+                    <td>.layer_wrap</td>
+                    <td><a href="javascript:;">/member/sms_auth_ifrm.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="row">아이디 찾기</td>
+                    <td></td>
+                    <td>.find-id-container</td>
+                    <td><a href="javascript:;">/member/find_id.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="row">비밀번호 찾기</td>
+                    <td></td>
+                    <td>.find-pw-container</td>
+                    <td><a href="javascript:;">/member/find_pw.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="row">비밀번호 초기화</td>
+                    <td></td>
+                    <td>.change-pw-container</td>
+                    <td><a href="javascript:;">/member/change_pw.do</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>mypage</td>
+                    <td>마이페이지 메인</td>
+                    <td></td>
+                    <td>.mypage-container</td>
+                    <td><a href="javascript:;">/mypage/index.do</a></td>
+                    <td>로그인 상태만 접근 가능</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

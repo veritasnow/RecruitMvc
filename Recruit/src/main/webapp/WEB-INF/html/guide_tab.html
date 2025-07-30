@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+    <title>MGDS | 퍼블리싱 가이드</title>
+
+    <link rel="shortcut icon" href="./../images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="./../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/modules.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/guide_pb_mo.css" />
+
+    <script type="text/javascript" src="./../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./../js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="./../js/guide_pb.js"></script>
+  </head>
+  <body>
+    <div id="wrap" class="tab-container">
+      <div id="aside"></div>
+
+      <div class="guide-content">
+        <!-- 박스형 -->
+        <section class="guide-section">
+          <div class="section">
+            <p class="section-title">박스형</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 참고</p>
+            </div>
+            <div class="ex">
+              <div class="tab-wrap">
+                <ul class="tabs box-typeA">
+                  <li class="tab tab01 active"><a href="javascript:;">tab01</a></li>
+                  <li class="tab tab02"><a href="javascript:;">tab02</a></li>
+                </ul>
+                <div class="tab-contents">
+                  <div class="tab-content content01 active">tab-content01</div>
+                  <div class="tab-content content02">tab-content02</div>
+                </div>
+              </div>
+              
+              <div class="tab-wrap">
+                <ul class="tabs box-typeB">
+                  <li class="tab tab01 active"><a href="javascript:;">tab01</a></li>
+                  <li class="tab tab02"><a href="javascript:;">tab02</a></li>
+                </ul>
+                <div class="tab-contents">
+                  <div class="tab-content content01 active">tab-content01</div>
+                  <div class="tab-content content02">tab-content02</div>
+                </div>
+              </div>
+              
+              <div class="tab-wrap">
+                <ul class="tabs box-typeC">
+                  <li class="tab tab01 active"><a href="javascript:;">tab01</a></li>
+                  <li class="tab tab02"><a href="javascript:;">tab02</a></li>
+                </ul>
+                <div class="tab-contents">
+                  <div class="tab-content content01 active">tab-content01</div>
+                  <div class="tab-content content02">tab-content02</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //박스형 -->
+          
+          <!-- 라인형 -->
+          <div class="section">
+            <p class="section-title">라인형</p>
+            <div class="notice-box">
+              <p>개인인터넷뱅킹 참고</p>
+            </div>
+            <div class="ex">
+              <div class="tab-wrap">
+                <ul class="tabs line-typeA">
+                  <li class="tab tab01 active"><a href="javascript:;">tab01</a></li>
+                  <li class="tab tab02"><a href="javascript:;">tab02</a></li>
+                </ul>
+                <div class="tab-contents">
+                  <div class="tab-content content01 active">tab-content01</div>
+                  <div class="tab-content content02">tab-content02</div>
+                </div>
+              </div>
+
+              <div class="tab-wrap">
+                <ul class="tabs line-typeB">
+                  <li class="tab tab01 active"><a href="javascript:;">tab01</a></li>
+                  <li class="tab tab02"><a href="javascript:;">tab02</a></li>
+                </ul>
+                <div class="tab-contents">
+                  <div class="tab-content content01 active">tab-content01</div>
+                  <div class="tab-content content02">tab-content02</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //라인형 -->
+        </section>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+      $('.tabs li').on('click', function(e){
+        $(this).closest('.tabs').find('li').removeClass('active')
+        $(this).addClass('active')
+
+        var idx = $(this).index();
+        var tabContent = $(this).closest('.tab-wrap').find('.tab-content')
+        tabContent.hide()
+        tabContent.eq(idx).show()
+      })
+    </script>
+  </body>
+</html>
