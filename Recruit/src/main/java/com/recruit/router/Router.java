@@ -18,7 +18,6 @@ public class Router {
         map.put("login"       , new Route("/WEB-INF/jsp/main/login"));        
         
         
-        map.put("excel"       , new Route("header", "/WEB-INF/jsp/sample/excel/excel", "footer"));
 
         
         // 1-1. main 예외페이지 403,404, 405, 500, 기타예외
@@ -39,6 +38,7 @@ public class Router {
         map.put("popup"     , new Route("/WEB-INF/jsp/iframe/sample/popup/popup"));
         map.put("file"      , new Route("/WEB-INF/jsp/iframe/sample/file/file"));
         map.put("security"  , new Route("/WEB-INF/jsp/iframe/sample/security/security"));       
+        map.put("excel"     , new Route("/WEB-INF/jsp/iframe/sample/excel/excel"));
         
         
         
