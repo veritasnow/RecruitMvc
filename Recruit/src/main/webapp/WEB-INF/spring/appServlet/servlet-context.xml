@@ -19,16 +19,24 @@
     <!-- Spring MVC 어노테이션 활성화 (@Controller, @RequestMapping 등) -->
     <mvc:annotation-driven />
 
-    <!-- ✅ 정적 리소스 매핑: /static/** -> /webapp/static/ -->
+    <!-- 정적 리소스 매핑 -->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="31556926" />
-	<mvc:resources mapping="/upload/**" location="file:///C:/upload/" />
+    <mvc:resources mapping="/upload/**" location="file:///C:/upload/" />
 
-	<!-- 파일 업로드를 위한 multipartResolver 설정 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+    <!-- 파일 업로드 multipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 
     <!-- JSP 뷰 리졸버 -->
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
           p:viewClass="org.springframework.web.servlet.view.JstlView"
           p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+
+    <!-- 인터셉터 등록 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.recruit.interceptor.RecruitInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
