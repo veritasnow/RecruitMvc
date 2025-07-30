@@ -53,6 +53,6 @@
 		</property>
 	</bean> -->
 
-	<bean id="recruitHandler" class="com.recruit.cmmn.RecruitExcepHndlr" />
+	<bean id="recruitHandler" class="com.recruit.web.cmmn.RecruitExcepHndlr" />
 	
 </beans>

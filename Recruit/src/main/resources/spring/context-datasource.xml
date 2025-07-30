@@ -48,7 +48,7 @@
 	
 	<!-- 4. Mapper 인터페이스 자동 등록 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	    <property name="basePackage" value="com.recruit.mapper"/>
+	    <property name="basePackage" value="com.recruit.web.mapper"/>
 	    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 	</bean>
 	

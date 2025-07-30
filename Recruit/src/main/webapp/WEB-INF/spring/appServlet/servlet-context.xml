@@ -35,7 +35,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.recruit.interceptor.RecruitInterceptor" />
+            <bean class="com.recruit.web.interceptor.RecruitInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 

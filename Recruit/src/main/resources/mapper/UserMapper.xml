@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.recruit.mapper.UserMapper">
+<mapper namespace="com.recruit.web.mapper.UserMapper">
 
-	<select id="selectUser" parameterType="com.recruit.vo.user.UserVO" resultType="com.recruit.dto.UserResponseDto">
+	<select id="selectUser" parameterType="com.recruit.web.vo.user.UserVO" resultType="com.recruit.web.dto.UserResponseDto">
 		SELECT ID
 		     , NAME
 		     , EMAIL
@@ -13,7 +13,7 @@
 		 WHERE ID = #{id}
 	</select>
 	
-	<insert id="insertUser" parameterType="com.recruit.vo.user.UserVO">
+	<insert id="insertUser" parameterType="com.recruit.web.vo.user.UserVO">
 		INSERT INTO T_USER
 		       (
 		         ID
@@ -34,7 +34,7 @@
 		       )
 	</insert>
 	
-	<update id="updateUser" parameterType="com.recruit.vo.user.UserVO">
+	<update id="updateUser" parameterType="com.recruit.web.vo.user.UserVO">
 		UPDATE T_USER
 		   SET NAME  = #{name}
 		     , EMAIL = #{email}
@@ -43,7 +43,7 @@
 		 WHERE ID = #{id}
 	</update>
 	
-	<delete id="deleteUser" parameterType="com.recruit.vo.user.UserVO">
+	<delete id="deleteUser" parameterType="com.recruit.web.vo.user.UserVO">
 		DELETE
 		  FROM T_USER
 		 WHERE ID = #{id}
