@@ -50,6 +50,9 @@ public class MenuController {
 	    result.add(new MenuListResponseDto("popupSample"    , "팝업/PDF샘플" , "popup/sample"));
 	    result.add(new MenuListResponseDto("fileSample"     , "파일 샘플"    , "file/sample"));
 	    result.add(new MenuListResponseDto("securitySample" , "보안 샘플"    , "security/sample"));
+	    result.add(new MenuListResponseDto("sample"         , "샘플페이지"    , "sample/page"));
+	    
+	    
 	    
 	    return new ResponseEntity<>(result, HttpStatus.OK);
 	}

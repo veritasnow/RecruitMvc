@@ -21,6 +21,17 @@ import com.recruit.router.ViewConstants;
 @Controller
 public class SampleController {
 
+	@GetMapping("/page")
+	public String page(Model model) {
+		Route  route  = Router.getInstance().getRoute("sample");
+		model.addAttribute("route", route);
+		return ViewConstants.IFRAME_INDEX;
+	}	
+	
+	
+	
+	
+	
 	@GetMapping("/test")
 	public String sample(Model model) {
 

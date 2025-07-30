@@ -37,10 +37,9 @@ public class Router {
         map.put("validation", new Route("/WEB-INF/jsp/iframe/sample/validation/validation"));
         map.put("popup"     , new Route("/WEB-INF/jsp/iframe/sample/popup/popup"));
         map.put("file"      , new Route("/WEB-INF/jsp/iframe/sample/file/file"));
-        map.put("security"  , new Route("/WEB-INF/jsp/iframe/sample/security/security"));       
+        map.put("security"  , new Route("/WEB-INF/jsp/iframe/sample/security/security"));
         map.put("excel"     , new Route("/WEB-INF/jsp/iframe/sample/excel/excel"));
-        
-        
+        map.put("sample"    , new Route("/WEB-INF/jsp/iframe/sample/sample/sample"));
         
         
         

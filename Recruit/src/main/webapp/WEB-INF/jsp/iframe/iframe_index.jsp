@@ -25,6 +25,7 @@
 
 <!-- JS -->
 <script src="/static/js/common/rest.js" type="text/javascript"></script>
+<script src="/static/js/common/utils.js" type="text/javascript"></script>
 
 <!-- Modal -->
 <script src="/static/js/jquery/jquery.modal.min.js"></script>
