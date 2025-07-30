@@ -21,7 +21,7 @@
 <link rel="shortcut icon" href="http://assets.tumblr.com/images/favicons/favicon.ico?1">
 <link href="/static/css/notosanskr.css" rel="stylesheet">
 <link href="/static/css/reset.css" rel="stylesheet">
-<link href="/static/css/style.css" rel="stylesheet">
+<link href="/static/css/iframe/iframe_style.css" rel="stylesheet">
 
 <!-- JS -->
 <script src="/static/js/common/rest.js" type="text/javascript"></script>

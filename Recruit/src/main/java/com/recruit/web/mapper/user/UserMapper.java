@@ -1,4 +1,4 @@
-package com.recruit.web.mapper;
+package com.recruit.web.mapper.user;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 

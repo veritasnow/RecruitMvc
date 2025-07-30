@@ -7,25 +7,23 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
+// TODO 기능이 필요하면 구현할 것.. 필요 없으면 운영반영 전에 제거할 것
 @Component
 public class RecruitInterceptor implements HandlerInterceptor {
+	
+	// 컨트롤러 진입전
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		log.info("Interceptor > preHandle : " + request.getRequestURI());
-		log.info("Interceptor > preHandle : 컨트롤러 진입 전");
 		return true;
     }
 
+    // 컨트롤러 진입 후 view렌더링 전
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info("Interceptor > postHandle : 컨트롤러 진입 - View 랜더링 전");
     }
 
+    // 컨트롤러 진입 후 view 렌더링 후
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object, Exception arg3) throws Exception {
-        log.info("Interceptor > afterCompletion : 컨트롤러 진입 - View 랜더링 후" );
     }
 }

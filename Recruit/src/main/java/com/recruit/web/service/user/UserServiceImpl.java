@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.recruit.web.dto.UserRequestDto;
 import com.recruit.web.dto.UserResponseDto;
-import com.recruit.web.mapper.UserMapper;
+import com.recruit.web.mapper.user.UserMapper;
 import com.recruit.web.vo.auth.AuthVO;
 import com.recruit.web.vo.user.UserVO;
 

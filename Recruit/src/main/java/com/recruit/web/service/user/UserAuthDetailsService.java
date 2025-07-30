@@ -29,11 +29,6 @@ public class UserAuthDetailsService implements UserDetailsService {
 		
 		try {
 			UserVO userVo = userService.findById(username);
-			
-			log.info("----------------------------------");
-			log.info(userVo.toString());
-			
-			// false는 아직 미구현한 소셜 로그인
 			UserAuthDto userAuthDTO = new UserAuthDto(
 				userVo.getId(),
 				userVo.getPassword(),

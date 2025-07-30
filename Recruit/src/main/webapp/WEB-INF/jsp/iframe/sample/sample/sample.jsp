@@ -4,17 +4,34 @@
 <div id="container">
   <div id="containerIn">
   
-    <h3>✅ Select 박스 예제</h3>
-    <select id="mySelect"></select><br>
+	<section>
+	    <h3>✅ Select 박스 예제</h3>
+	    <select id="mySelect"></select><br>
+		<ul>
+			<li>
+				<button id="btnSetSelect">데이터 세팅</button>
+			</li>
+			<li>
+				<button id="btnClear">초기화</button>
+			</li>
+			<li>
+				<button id="btnAddOption">옵션 추가</button>
+			</li>
+			<li>
+				<button id="btnSetDefault">기본값 설정 (value=2)</button>
+			</li>
+			<li>
+				<button id="btnGetSelected">선택값 가져오기</button>
+			</li>
+			<li>
+				<button id="btnGetAllOptions">전체 옵션 출력</button>
+			</li>			
+		</ul>    
+	</section>
     
-    <button id="btnSetSelect">데이터 세팅</button>
-    <button id="btnClear">초기화</button>
-    <button id="btnAddOption">옵션 추가</button>
-    <button id="btnSetDefault">기본값 설정 (value=2)</button>
-    <button id="btnGetSelected">선택값 가져오기</button>
-    <button id="btnGetAllOptions">전체 옵션 출력</button>
-    
-    <hr>
+	<br/>
+    <hr/>
+
     
     <h3>✅ 라디오 버튼 예제</h3>
     <div id="radioContainer"></div>
@@ -23,7 +40,8 @@
     <button id="btnGetRadio">선택된 라디오 값</button>
     <button id="btnSetRadioValue">기본값 선택 (value=2)</button>
 
-    <hr>
+	<br/>
+    <hr/>
 
     <h3>✅ Input 예제</h3>
     <input id="myInput" /><br><br>

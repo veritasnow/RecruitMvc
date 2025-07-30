@@ -44,8 +44,6 @@ public class SecurityConfig {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        log.info("------------------------Security Configure Start---------------------------");
-
         // 커스텀 필터 등록
         http
             .addFilterBefore(cspHeaderFilter, BasicAuthenticationFilter.class)
@@ -84,7 +82,6 @@ public class SecurityConfig {
             .clearAuthentication(true)                // ✅ SecurityContext에서 인증 정보 제거
         );
 
-        log.info("------------------------Security Configure End---------------------------");
         return http.build();
     }
 }
