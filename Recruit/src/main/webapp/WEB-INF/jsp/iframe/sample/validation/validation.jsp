@@ -26,12 +26,12 @@
 
         <div>
             <label for="birthdate">생년월일 (YYYY-MM-DD):</label>
-            <input type="text" id="birthdate" name="birthdate" />
+            <input type="text" id="birthdate" name="birthdate" autocomplete="bday" />
         </div>
 
         <div>
             <label for="password">비밀번호 (영문 대소문자, 숫자, 특수문자 포함 8자 이상):</label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" name="password" autocomplete="new-password" />
         </div>
 
         <button type="button" onclick="requestForm('I')">등록</button>        

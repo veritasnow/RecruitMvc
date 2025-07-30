@@ -1,44 +1,68 @@
 const formatUtil = {
-	// 숫자에 천 단위 콤마 찍기 (예: 1234567 -> "1,234,567")
+	/**
+	 * 숫자에 천 단위 콤마 삽입 (예: 1234567 -> "1,234,567")
+	 * @param {string|number|null} value - 숫자 또는 문자열
+	 * @returns {string} 포맷된 문자열
+	 */
 	formatMoney: function(value) {
 		if (value == null) return '';
-		const num = Number(String(value).replace(/,/g, '')); // 콤마 제거 후 숫자 변환
+		const num = Number(String(value).replace(/,/g, ''));
 		if (isNaN(num)) return '';
-		return num.toLocaleString('en-US'); 
+		return num.toLocaleString('en-US');
 	},
 
-	// 핸드폰 번호 하이픈 자동 삽입 (01012345678 -> 010-1234-5678)
+	/**
+	 * 핸드폰 번호에 하이픈 자동 삽입 (01012345678 -> 010-1234-5678)
+	 * @param {string} value - 숫자 문자열
+	 * @returns {string} 포맷된 전화번호
+	 */
 	formatPhoneNumber: function(value) {
 		if (!value) return '';
-		const digits = value.replace(/\D/g, ''); // 숫자만 추출
-		if (digits.length === 10) { // 3-3-4 형태 (예: 0111234567)
+		const digits = value.replace(/\D/g, '');
+		if (digits.length === 10) {
 			return digits.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-		} else if (digits.length === 11) { // 3-4-4 형태 (예: 01012345678)
+		} else if (digits.length === 11) {
 			return digits.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
 		} else {
-			return value; // 길이가 맞지 않으면 원본 반환
+			return value;
 		}
 	},
 
-	// 이메일 소문자로 변환
+	/**
+	 * 이메일 문자열을 소문자로 변환
+	 * @param {string} value - 이메일 문자열
+	 * @returns {string} 소문자로 변환된 이메일
+	 */
 	formatEmail: function(value) {
 		if (!value) return '';
 		return value.trim().toLowerCase();
 	},
 
-	// 이름 앞뒤 공백 제거 + 중간 공백은 한 칸만 남기기
+	/**
+	 * 이름 문자열 앞뒤 공백 제거 및 중간 공백 하나로 정리
+	 * @param {string} value - 이름 문자열
+	 * @returns {string} 정리된 이름
+	 */
 	formatName: function(value) {
 		if (!value) return '';
 		return value.trim().replace(/\s+/g, ' ');
 	},
 
-	// 모든 공백 제거
+	/**
+	 * 모든 공백 제거
+	 * @param {string} value - 입력 문자열
+	 * @returns {string} 공백이 제거된 문자열
+	 */
 	removeAllWhitespace: function(value) {
 		if (!value) return '';
 		return value.replace(/\s+/g, '');
 	},
 
-	// 우편번호 포맷팅: 5자리 또는 5+4자리 하이픈 삽입 (ex: 123456789 -> 12345-6789)
+	/**
+	 * 우편번호 포맷팅 (5자리 또는 9자리 -> 12345 또는 12345-6789)
+	 * @param {string} value - 우편번호 문자열
+	 * @returns {string} 포맷된 우편번호
+	 */
 	formatZipCode: function(value) {
 		if (!value) return '';
 		const digits = value.replace(/\D/g, '');
@@ -51,14 +75,22 @@ const formatUtil = {
 		}
 	},
 
-	// 카드번호 4자리마다 하이픈 삽입 (ex: 1234123412341234 -> 1234-1234-1234-1234)
+	/**
+	 * 카드번호를 4자리마다 하이픈 삽입
+	 * @param {string} value - 카드번호 문자열
+	 * @returns {string} 포맷된 카드번호
+	 */
 	formatCardNumber: function(value) {
 		if (!value) return '';
 		const digits = value.replace(/\D/g, '');
 		return digits.replace(/(.{4})/g, '$1-').slice(0, -1);
 	},
 
-	// 날짜를 yyyy-mm-dd 형식으로 포맷팅 (Date 객체 또는 날짜 문자열 입력 가능)
+	/**
+	 * 날짜를 yyyy-mm-dd 형식으로 포맷 (Date 객체 또는 문자열 허용)
+	 * @param {Date|string} value - 날짜 값
+	 * @returns {string} 포맷된 날짜
+	 */
 	formatDateYYYYMMDD: function(value) {
 		if (!value) return '';
 		const date = new Date(value);
@@ -69,7 +101,11 @@ const formatUtil = {
 		return `${yyyy}-${mm}-${dd}`;
 	},
 
-	// 국제 전화번호 포맷팅 (ex: 821012345678 -> +82 10 1234 5678)
+	/**
+	 * 국제 전화번호 포맷팅 (예: 821012345678 -> +82 10 1234 5678)
+	 * @param {string} value - 국제 전화번호
+	 * @returns {string} 포맷된 전화번호
+	 */
 	formatIntlPhoneNumber: function(value) {
 		if (!value) return '';
 		const digits = value.replace(/\D/g, '');
@@ -81,48 +117,59 @@ const formatUtil = {
 		return value;
 	},
 
-	// 집 전화번호 하이픈 자동 삽입 (ex: 0212345678 -> 02-1234-5678)
+	/**
+	 * 집 전화번호에 하이픈 자동 삽입 (예: 0212345678 -> 02-1234-5678)
+	 * @param {string} value - 집 전화번호 문자열
+	 * @returns {string} 포맷된 집 전화번호
+	 */
 	formatLandlinePhoneNumber: function(value) {
 		if (!value) return '';
 		const digits = value.replace(/\D/g, '');
 		if (digits.startsWith('02') && digits.length === 9) {
-			// 02-123-4567
 			return digits.replace(/(02)(\d{3})(\d{4})/, '$1-$2-$3');
 		} else if (digits.startsWith('02') && digits.length === 10) {
-			// 02-1234-5678
 			return digits.replace(/(02)(\d{4})(\d{4})/, '$1-$2-$3');
 		} else if (digits.length === 10) {
-			// 031-123-4567 (3자리 지역번호)
 			return digits.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 		} else if (digits.length === 11) {
-			// 031-1234-5678
 			return digits.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
 		} else {
 			return value;
 		}
 	},
 
-	// 자격증 번호 하이픈 자동 삽입 (ex: 123456789 -> 123-456-789)
+	/**
+	 * 자격증 번호 하이픈 자동 삽입 (예: 123456789 -> 123-456-789)
+	 * @param {string} value - 자격증 번호
+	 * @returns {string} 포맷된 자격증 번호
+	 */
 	formatCertificateNumber: function(value) {
 		if (!value) return '';
 		const digits = value.replace(/\D/g, '');
 		return digits.replace(/(\d{3})(\d{3})(\d{3})/, '$1-$2-$3');
 	},
 
-	// 주소 공백 정리 (앞뒤 공백 제거 + 중간 공백 1칸 유지)
+	/**
+	 * 주소 공백 정리 (앞뒤 공백 제거 및 중간 공백 하나로 정리)
+	 * @param {string} value - 주소 문자열
+	 * @returns {string} 정리된 주소
+	 */
 	formatAddress: function(value) {
 		if (!value) return '';
 		return value.trim().replace(/\s+/g, ' ');
 	},
 
-	// 경력 기간 포맷팅 (ex: 201801 ~ 202012 -> 2018-01 ~ 2020-12)
+	/**
+	 * 경력 기간 포맷팅 (예: 201801 ~ 202012 -> 2018-01 ~ 2020-12)
+	 * @param {string} value - 경력 기간 문자열
+	 * @returns {string} 포맷된 경력 기간
+	 */
 	formatCareerPeriod: function(value) {
 		if (!value) return '';
-		// 공백 제거 후 ~ 기준으로 분리
 		const parts = value.replace(/\s+/g, '').split('~');
 		if (parts.length !== 2) return value;
 		const formatPart = (part) => {
-			if (part.length === 6) { // YYYYMM
+			if (part.length === 6) {
 				return part.slice(0,4) + '-' + part.slice(4,6);
 			}
 			return part;
@@ -130,7 +177,11 @@ const formatUtil = {
 		return `${formatPart(parts[0])} ~ ${formatPart(parts[1])}`;
 	},
 
-	// 학력 기간 포맷팅 (ex: 2015.03 - 2019.02 -> 2015-03 - 2019-02)
+	/**
+	 * 학력 기간 포맷팅 (예: 2015.03 - 2019.02 -> 2015-03 - 2019-02)
+	 * @param {string} value - 학력 기간 문자열
+	 * @returns {string} 포맷된 학력 기간
+	 */
 	formatEducationPeriod: function(value) {
 		if (!value) return '';
 		const parts = value.replace(/\s+/g, '').split('-');

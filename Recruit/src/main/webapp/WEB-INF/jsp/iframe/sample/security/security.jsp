@@ -4,7 +4,7 @@
 <div id="container">
 	<div id="containerIn">
 	    <!-- 보안 유틸 스크립트 로드 -->
-		<script src="/static/js/security/security.js" type="text/javascript"></script>	
+		<script src="/static/js/common/security.js" type="text/javascript"></script>	
 		
 	    <!-- 입력 영역 -->
 	    <div>

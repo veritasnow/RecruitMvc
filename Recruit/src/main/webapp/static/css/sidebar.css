@@ -57,7 +57,7 @@
   display: none; /* Chrome, Safari */
 }
 .tab {
-  padding: 8px 16px;
+  padding: 8px 26px 8px 12px;
   white-space: nowrap;
   cursor: pointer;
   border: 1px solid transparent;
@@ -80,8 +80,8 @@
 }
 .tab .close-btn {
   position: absolute;
-  top: 4px;
-  right: 6px;
+  top: 8px;
+  right: 8px;
   font-weight: bold;
   cursor: pointer;
   color: #6c757d;
