@@ -124,30 +124,30 @@ const radioUtils = {
    * @param {string} valueKey 
    * @param {string} [defaultValue] 
    */
-  setRadioGroup: function(container, data, name, labelKey, valueKey, defaultValue) {
-    if (!container || !Array.isArray(data)) return;
-    container.innerHTML = '';
-
-    data.forEach(item => {
-      const id = `${name}_${item[valueKey]}`;
-
-      const radio = document.createElement('input');
-      radio.type = 'radio';
-      radio.name = name;
-      radio.id = id;
-      radio.value = item[valueKey];
-      if (item[valueKey] === defaultValue) {
-        radio.checked = true;
-      }
-
-      const label = document.createElement('label');
-      label.htmlFor = id;
-      label.textContent = item[labelKey];
-
-      container.appendChild(radio);
-      container.appendChild(label);
-    });
-  },
+	setRadioGroup: function(container, data, name, labelKey, valueKey, defaultValue) {
+	  if (!container || !Array.isArray(data)) return;
+	  container.innerHTML = '';
+	
+	  data.forEach(item => {
+	    const id = `${name}_${item[valueKey]}`;
+	
+	    const radio = document.createElement('input');
+	    radio.type = 'radio';
+	    radio.name = name;
+	    radio.id = id;
+	    radio.value = item[valueKey];
+	    if (item[valueKey] === defaultValue) {
+	      radio.checked = true;
+	    }
+	
+	    const label = document.createElement('label');
+	    label.htmlFor = id;
+	    label.innerHTML = `<span>${item[labelKey]}</span>`;
+	
+	    container.appendChild(radio);
+	    container.appendChild(label);
+	  });
+	},
 
   /**
    * 선택된 라디오 값 가져오기
@@ -250,5 +250,52 @@ const inputUtils = {
   setDisabled: function(inputElem, isDisabled) {
     if (!inputElem) return;
     inputElem.disabled = Boolean(isDisabled);
-  }
+  },
+  
+  /**
+   * 금칙어가 포함되어 있는지 확인
+   * @param {string} inputId - 검사할 input 요소의 ID
+   * @param {string[]} forbiddenWords - 금칙어 배열
+   * @returns {boolean} 금칙어가 없으면 true, 있으면 false
+   *
+   * @example
+   * // <input id="username" value="hello123" />
+   * const forbidden = ['badword', 'hello'];
+   * const result = validator.checkForbiddenWords('username', forbidden);
+   * // result는 false이고, alert가 뜹니다.
+   */
+  checkForbiddenWords: function(inputId, forbiddenWords) {
+    const inputElem = document.getElementById(inputId);
+    if (!inputElem) return true;
+
+    const value = inputElem.value.toLowerCase();
+
+    for (let i = 0; i < forbiddenWords.length; i++) {
+      if (value.includes(forbiddenWords[i])) {
+        alert(forbiddenWords[i] + "는 금지어입니다.");
+        return false;
+      }
+    }
+    return true;
+  },
+
+  /**
+   * 정규식 패턴 검사(정규식제한)
+   * @param {string} inputId - 검사할 input 요소의 ID
+   * @param {RegExp} regEx - 검사할 정규표현식
+   * @returns {boolean} 유효하면 true, 아니면 false
+   *
+   * @example
+   * // <input id="password" value="abc12345" />
+   * const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+   * const result = validator.checkPattern('password', regex);
+   * // result는 true
+   */
+  checkPattern: function(inputId, regEx) {
+    const inputElem = document.getElementById(inputId);
+    if (!inputElem) return false;
+
+    const value = inputElem.value;
+    return regEx.test(value);
+  },
 };

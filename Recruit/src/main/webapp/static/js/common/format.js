@@ -87,9 +87,17 @@ const formatUtil = {
 	},
 
 	/**
-	 * 날짜를 yyyy-mm-dd 형식으로 포맷 (Date 객체 또는 문자열 허용)
-	 * @param {Date|string} value - 날짜 값
-	 * @returns {string} 포맷된 날짜
+	 * 날짜를 `yyyy-mm-dd` 형식으로 변환  
+	 * 📥 입력: `Date 객체` 또는 날짜 문자열 (e.g. `"2025-07-31"`, `"Jul 31, 2025"`)  
+	 * 📤 출력: `"2025-07-31"` (유효하지 않으면 `''` 반환)
+	 *
+	 * @param {Date|string} value - Date 객체 또는 파싱 가능한 날짜 문자열
+	 * @returns {string} 포맷된 날짜 문자열 (형식: "YYYY-MM-DD")
+	 *
+	 * @example
+	 * formatDateYYYYMMDD(new Date(2025, 6, 31)) // "2025-07-31"
+	 * formatDateYYYYMMDD("2025-07-31")          // "2025-07-31"
+	 * formatDateYYYYMMDD("Jul 31, 2025")        // "2025-07-31"
 	 */
 	formatDateYYYYMMDD: function(value) {
 		if (!value) return '';
@@ -99,6 +107,91 @@ const formatUtil = {
 		const mm = ('0' + (date.getMonth() + 1)).slice(-2);
 		const dd = ('0' + date.getDate()).slice(-2);
 		return `${yyyy}-${mm}-${dd}`;
+	},
+
+	/**
+	 * 날짜 문자열에서 구분자(`-`, `:`, `.`, 공백 등)를 제거하고 숫자만 추출  
+	 * 📥 입력: `"2024-07-31 14:30"` 또는 `"2024.07.31 14:30"`  
+	 * 📤 출력: `"202407311430"` 또는 `"20240731"` (길이에 따라 절삭)
+	 *
+	 * @param {string} value - 날짜 문자열 (형식 무관, 구분자 포함 가능)
+	 * @returns {string} 숫자만 남은 날짜 문자열 (최대 16자리까지 자름)
+	 *
+	 * @example
+	 * formatDateCompact("2024-07-31")              // "20240731"
+	 * formatDateCompact("2024-07-31 14:30")        // "202407311430"
+	 * formatDateCompact("2024.07.31 14:30:59")     // "20240731143059"
+	 */
+	formatDateCompact: function(value) {
+		if (!value) return '';
+		const clean = value.replace(/[-:.\s]/g, '');
+		return clean.length > 14 ? clean.slice(0, 16) : clean.slice(0, 10);
+	},
+
+	/**
+	 * 압축된 날짜 문자열을 사람이 읽을 수 있는 형식으로 변환  
+	 * 📥 입력: `"20250731"` 또는 `"20250731123045"`  
+	 * 📤 출력: `"2025-07-31"` 또는 `"2025-07-31 12:30:45"`  
+	 * 💡 유효하지 않은 형식은 빈 문자열 반환
+	 *
+	 * @param {string} value - 숫자형 날짜 문자열 (YYYYMMDD 또는 YYYYMMDDHHMISS)
+	 * @returns {string} 포맷된 날짜 문자열 ("YYYY-MM-DD" 또는 "YYYY-MM-DD HH:MM:SS")
+	 *
+	 * @example
+	 * formatDateReadable("20250731")         // "2025-07-31"
+	 * formatDateReadable("20250731123045")   // "2025-07-31 12:30:45"
+	 */
+	formatDateReadable: function(value) {
+		if (!value || typeof value !== 'string') return '';
+		const cleaned = value.replace(/\D/g, '');
+		if (cleaned.length === 8) {
+			return `${cleaned.slice(0,4)}-${cleaned.slice(4,6)}-${cleaned.slice(6,8)}`;
+		} else if (cleaned.length === 14) {
+			return `${cleaned.slice(0,4)}-${cleaned.slice(4,6)}-${cleaned.slice(6,8)} ` +
+			       `${cleaned.slice(8,10)}:${cleaned.slice(10,12)}:${cleaned.slice(12,14)}`;
+		}
+		return '';
+	},
+		
+	/**
+	 * 날짜 문자열(yyyymmdd 또는 yyyy-mm-dd)을 받아서 "yyyy-mm-dd(요일)" 형식으로 반환
+	 * @param {string} param - 날짜 문자열 (예: "20250731", "2025-07-31")
+	 * @param {string} [sep='-'] - 날짜 구분자 (예: '-', '.', '/')
+	 * @param {boolean} [lastSepYn=true] - 날짜 뒤에 구분자를 붙일지 여부
+	 * @param {boolean} [dayFullName=false] - 요일을 전체 이름으로 표시할지 여부 (예: '월요일')
+	 * @param {boolean} [spacing=false] - 날짜와 요일 사이에 공백을 넣을지 여부
+	 * @returns {string} "yyyy-mm-dd(월)" 또는 옵션에 따른 포맷 문자열 반환, 잘못된 입력 시 빈 문자열 반환
+	 *
+	 * @example
+	 * formatUtil.formatDateWithDay("20250731")                     // "2025-07-31-(목)"
+	 * formatUtil.formatDateWithDay("20250731", '-', false, true)  // "2025-07-31(목요일)"
+	 * formatUtil.formatDateWithDay("2025-07-31", '.', true, false, true) // "2025.07.31 (목)"
+	 */
+	formatDateWithDay: function(param, sep = '-', lastSepYn = true, dayFullName = false, spacing = false) {
+		if (typeof param !== 'string' || param.length < 8) {
+			return '';
+		}
+	
+		const digitsOnly = param.replace(/\D/g, '').slice(0, 8);
+		if (digitsOnly.length !== 8) {
+			return '';
+		}
+	
+		const formattedDate = digitsOnly.slice(0, 4) + sep + digitsOnly.slice(4, 6) + sep + digitsOnly.slice(6, 8);
+	
+		const dateObj = new Date(`${digitsOnly.slice(0, 4)}-${digitsOnly.slice(4, 6)}-${digitsOnly.slice(6, 8)}`);
+		if (isNaN(dateObj.getTime())) {
+			return '';
+		}
+	
+		const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+		const dayIndex = dateObj.getDay();
+		const dayStr = weekdays[dayIndex] + (dayFullName ? '요일' : '');
+	
+		const lastSeparator = lastSepYn ? sep : '';
+		const space = spacing ? ' ' : '';
+	
+		return `${formattedDate}${lastSeparator}${space}(${dayStr})`;
 	},
 
 	/**

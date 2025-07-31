@@ -54,14 +54,48 @@ const validationUtil = {
 	},
 
 	/**
-	 * 유효한 날짜 형식인지 확인
-	 * @param {string|Date} value
-	 * @returns {boolean}
+	 * 입력된 값이 유효한 날짜 형식인지 검사합니다.
+	 * 
+	 * - YYYYMMDD 형식의 8자리 숫자 문자열을 정확히 검사합니다.
+	 * - 일반적인 날짜 문자열이나 Date 객체도 검사 가능합니다.
+	 * 
+	 * @param {string|Date} value - 검사할 날짜 값 (문자열 또는 Date 객체)
+	 * @returns {boolean} 유효한 날짜면 true, 아니면 false
+	 * 
+	 * @example
+	 * isValidDate("20230731");      // true
+	 * isValidDate("20230229");      // false (2023년 2월 29일은 없음)
+	 * isValidDate("2023-07-31");    // true
+	 * isValidDate(new Date());      // true (오늘 날짜)
+	 * isValidDate("invalid date");  // false
 	 */
-	isValidDate: function (value) {
-		if (this.isEmpty(value)) return false;
-		const date = new Date(value);
-		return !isNaN(date.getTime());
+	isValidDate: function(value) {
+	    // 값이 비어있으면 false 반환
+	    if (this.isEmpty(value)) return false;
+	
+	    // YYYYMMDD 형식 (8자리 숫자 문자열)인 경우에만 세부 검사 진행
+	    if (typeof value === 'string' && /^\d{8}$/.test(value)) {
+	        // 년, 월, 일 분리
+	        const year = parseInt(value.slice(0, 4), 10);
+	        const month = parseInt(value.slice(4, 6), 10);
+	        const day = parseInt(value.slice(6, 8), 10);
+	
+	        // 월은 1~12, 일은 1~31 범위 내인지 기본 체크
+	        if (month < 1 || month > 12 || day < 1 || day > 31) return false;
+	
+	        // Date 객체 생성 (월은 0부터 시작하므로 -1)
+	        const date = new Date(year, month - 1, day);
+	
+	        // 실제 Date 객체의 년, 월, 일이 입력값과 동일한지 확인
+	        // (예: 2023-02-30 → 실제로는 3월 2일로 넘어가므로 false 처리)
+	        return date.getFullYear() === year &&
+	               date.getMonth() === month - 1 &&
+	               date.getDate() === day;
+	    }
+	
+	    // YYYYMMDD 형식이 아닌 경우, Date 생성 후 유효성 검사
+	    const date = new Date(value);
+	    return !isNaN(date.getTime());
 	},
 
 	/**
@@ -217,32 +251,72 @@ const validationUtil = {
 		if (!value) return false;
 		const digits = value.replace(/-/g, '');
 		if (!/^\d{13}$/.test(digits)) return false;
-
+	
 		// 생년월일 유효성 검사 (앞 6자리)
-		const birth = digits.substr(0, 6);
-		const yearPrefixMap = { '1': 19, '2': 19, '3': 20, '4': 20, '5': 19, '6': 19, '7': 20, '8': 20, '9': 18, '0': 18 };
+		const birth = digits.substring(0, 6);
+		const yearPrefixMap = { 
+			'1': 19, '2': 19, '3': 20, '4': 20, 
+			'5': 19, '6': 19, '7': 20, '8': 20, 
+			'9': 18, '0': 18 
+		};
 		const genderCode = digits.charAt(6);
 		const yearPrefix = yearPrefixMap[genderCode];
 		if (yearPrefix === undefined) return false;
-
-		const year = yearPrefix + parseInt(birth.substr(0, 2), 10);
-		const month = parseInt(birth.substr(2, 2), 10);
-		const day = parseInt(birth.substr(4, 2), 10);
+	
+		const year = yearPrefix + parseInt(birth.substring(0, 2), 10);
+		const month = parseInt(birth.substring(2, 4), 10);
+		const day = parseInt(birth.substring(4, 6), 10);
 		const birthDate = new Date(year, month - 1, day);
-		if (birthDate.getFullYear() !== year || birthDate.getMonth() + 1 !== month || birthDate.getDate() !== day) return false;
-
-		// 체크sum 계산
+	
+		if (
+			birthDate.getFullYear() !== year || 
+			birthDate.getMonth() + 1 !== month || 
+			birthDate.getDate() !== day
+		) return false;
+	
+		// 체크섬 계산
 		const multipliers = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5];
 		let sum = 0;
 		for (let i = 0; i < 12; i++) {
 			sum += parseInt(digits.charAt(i), 10) * multipliers[i];
 		}
-
+	
 		const mod = sum % 11;
 		const checkDigit = (11 - mod) % 10;
-
+	
 		return checkDigit === parseInt(digits.charAt(12), 10);
 	},
+	
+	/**
+	 * HHMM 형식의 시간을 검사합니다.
+	 * - 4자리 숫자 문자열이어야 합니다.
+	 * - HH는 00~23, MM은 00~59 범위여야 합니다.
+	 * 
+	 * @param {string} value - 검사할 시간 문자열 (예: "0930", "2359")
+	 * @returns {boolean} 유효한 시간이면 true, 아니면 false
+	 * 
+	 * @example
+	 * isValidTimeHHMM("0000"); // true
+	 * isValidTimeHHMM("2359"); // true
+	 * isValidTimeHHMM("2400"); // false (HH가 24 이상)
+	 * isValidTimeHHMM("1260"); // false (MM이 60 이상)
+	 * isValidTimeHHMM("12a0"); // false (숫자가 아님)
+	 * isValidTimeHHMM("123");  // false (길이 4가 아님)
+	 */
+	isValidTimeHHMM: function(value) {
+		if (this.isEmpty(value)) return false;
+		if (typeof value !== 'string' || value.length !== 4) return false;
+		if (!/^\d{4}$/.test(value)) return false;
+
+		const hh = parseInt(value.substring(0, 2), 10);
+		const mm = parseInt(value.substring(2, 4), 10);
+		
+		if (hh < 0 || hh > 23) return false;
+		if (mm < 0 || mm > 59) return false;
+
+		return true;
+	},
+	
 
 	/**
 	 * 숫자와 하이픈(-)만 포함되었는지 검사
