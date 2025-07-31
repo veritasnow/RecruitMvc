@@ -16,9 +16,15 @@
 <div id="wrap">
 
 	테스트..!!!
-	
-	<input type="text" id="inputValue" value="테스트 값">
-	<button onclick="popupUtil.returnToParent({ elementId: 'inputValue' }, 'test')">부모창에 값 전송</button>
+
+	<input type="text" id="inputValue1" value="테스트 값 1">
+	<input type="text" id="inputValue2" value="테스트 값 2">
+	<input type="text" id="inputValue3" value="테스트 값 3">
+
+	<!-- 여러 id 배열로 넘김 -->
+	<button onclick="popupUtil.returnToParent({ elementId: ['inputValue1', 'inputValue2', 'inputValue3'] })">
+		부모창에 여러 값 전송
+	</button>
 </div>
 </body>
 </html>
