@@ -1,4 +1,5 @@
 const formatUtil = {
+	
 	/**
 	 * 숫자에 천 단위 콤마 삽입 (예: 1234567 -> "1,234,567")
 	 * @param {string|number|null} value - 숫자 또는 문자열

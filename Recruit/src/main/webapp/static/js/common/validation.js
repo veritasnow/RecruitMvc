@@ -157,6 +157,15 @@ const validationUtil = {
 	isMediumPassword: function (value) {
 		return /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(value);
 	},
+		
+	/**
+	 * 영문/숫자/특수문자를 포함하고 8~16자 사이인지 검사
+	 * @param {string} value
+	 * @returns {boolean}
+	 */
+	isPasswordValidBasic: function (value) {
+		return /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,16}$/.test(value);
+	},	
 
 	/**
 	 * 기본 수준의 비밀번호 형식인지 확인

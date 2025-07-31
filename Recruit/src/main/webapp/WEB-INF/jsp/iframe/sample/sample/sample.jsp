@@ -69,6 +69,26 @@
 
     <br/>
     <hr/>
+    
+    
+    
+	<!-- 공유하기 버튼 -->
+	<button id="btnShare">공유하기</button>
+    <!-- 기존 스크립트 태그 아래에 timer.js 추가 -->
+    <script src="/static/js/common/social/shareUtils.js" type="text/javascript"></script>    
+
+	<!-- 공유하기 모달 (숨겨져 있음) -->
+	<div id="shareModal" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:#fff; border:1px solid #ccc; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.2); z-index:1000;">
+	    <h3>공유하기</h3>
+	    <div id="shareButtons" style="display:flex; gap:10px;">
+	        <!-- 버튼들 여기에 생성 -->
+	    </div>
+	    <button id="btnCloseModal" style="margin-top:10px;">닫기</button>
+	</div>
+    
+    
+    
+    
 
 
 
@@ -188,6 +208,31 @@
         timerUtil.extend(30);
         alert('타이머 30초 연장됨');
       });      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+	   // 초기화 (페이지 로딩 후 한 번만 실행)
+      shareModule.init('btnShare', 'shareModal', 'btnCloseModal', 'shareButtons');
+
+      // 공유할 데이터 세팅 (필요할 때마다 호출 가능)
+      shareModule.setShareData(
+        'https://recruit.kfcc.co.kr/inco/hopeZoneGmgo.do',
+        'KFCC 채용공고',
+        '함께 꿈을 이루세요!'
+      );     
+      
+      
+      
+ 
       
     </script>
 
