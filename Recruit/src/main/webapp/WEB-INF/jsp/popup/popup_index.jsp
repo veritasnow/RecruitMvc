@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 <script type="text/javascript" src="/static/js/common/popup/popup.js"></script>
-
 <title>팝업 테스트</title>
 
 </head>
@@ -25,6 +24,15 @@
 	<button onclick="popupUtil.returnToParent({ elementId: ['inputValue1', 'inputValue2', 'inputValue3'] })">
 		부모창에 여러 값 전송
 	</button>
+	
+	<!-- popup-test.jsp -->
+	<button onclick="popupUtil.returnToParentPostMessage({
+		elementId: ['inputValue1', 'inputValue2', 'inputValue3'],
+		targetUrl: 'popup/sample'
+	})">
+		iframe으로 값 보내기 (postMessage)
+	</button>		
+	
 </div>
 </body>
 </html>

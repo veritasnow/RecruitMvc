@@ -14,6 +14,17 @@
             function restPdfTest() {
                 popupUtil.openPopupGet('/pdf/popup', {});
             }
+            
+        	window.addEventListener("message", function(event) {
+        		const data = event.data;
+        		console.log("iframe에서 받은 데이터:", data);
+        		if (typeof data === 'object') {
+        			for (const key in data) {
+        				const el = document.getElementById(key);
+        				if (el) el.value = data[key];
+        			}
+        		}
+        	});     
         </script>
 
         <button onclick="restTest()">rest테스트</button>
@@ -25,5 +36,6 @@
 			<input type="text" id="inputValue2" name="inputValue2" />
 			<input type="text" id="inputValue3" name="inputValue3" />
 		</div>	        
+		
     </div>
 </div>
