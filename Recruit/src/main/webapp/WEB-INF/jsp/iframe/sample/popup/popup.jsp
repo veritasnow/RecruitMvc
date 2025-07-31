@@ -6,7 +6,7 @@
         <script type="text/javascript" src="/static/js/common/popup/popup.js"></script>
 		
 		팝업창 띄우기
-
+		
         <script type="text/javascript">
             function restTest() {
                 popupUtil.openPopupGet('/popup/popup-test', { id: 123, name: '홍길동' });
@@ -25,8 +25,12 @@
         
 		<button onclick="restPdfTest()">
 			자기소개서 view
-		</button>	        
-        
+		</button>
+		
+		<div>
+			팝업 return value
+			<input type="text" name="test" />
+		</div>	        
         
     </div>
 </div>
