@@ -325,7 +325,23 @@ const validationUtil = {
 
 		return true;
 	},
-	
+
+	/**
+	 * 주어진 값이 소수점 이하 n자리까지의 숫자인지 확인
+	 * @param {string} value - 검사할 문자열
+	 * @param {number} maxDecimalPlaces - 허용할 소수점 이하 자리수 (예: 2)
+	 * @returns {boolean} - 유효하면 true
+	 * 
+	 * @example
+	 * isDecimalWithMaxDigits("123.45", 2);  // true
+	 * isDecimalWithMaxDigits("123.456", 2); // false
+	 * isDecimalWithMaxDigits("abc", 2);     // false
+	 */
+	isDecimalWithMaxDigits: function(value, maxDecimalPlaces = 2) {
+		if (this.isEmpty(value)) return false;
+		const regex = new RegExp(`^\\d*(\\.\\d{0,${maxDecimalPlaces}})?$`);
+		return regex.test(value);
+	},	
 
 	/**
 	 * 숫자와 하이픈(-)만 포함되었는지 검사

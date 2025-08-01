@@ -1,3 +1,36 @@
+/*
+ex)비동기 처리시 순서대로 실행
+async function loadAllMenus() {
+	try {
+		const menu1 = await restApi.read('/menu/list', { id: 1 });
+		const menu2 = await restApi.read('/menu/list', { id: 2 });
+		const menu3 = await restApi.read('/menu/list', { id: 3 });
+
+		// 순서대로 처리
+		render(menu1, menu2, menu3);
+	} catch (e) {
+		console.error('오류 발생:', e);
+	}
+}
+
+
+
+ex) 병렬 실행 후 동시처리 -> 받은 순서대로 처리하고 싶은경우
+Promise.all([
+	restApi.read('/menu/list', { id: 1 }),
+	restApi.read('/menu/list', { id: 2 }),
+	restApi.read('/menu/list', { id: 3 })
+]).then(function ([menu1, menu2, menu3]) {
+	render(menu1, menu2, menu3);
+});
+
+
+
+*/
+
+
+
+
 const main = {
     // 사이드바 메뉴를 담을 DOM 요소
     menuList: null,

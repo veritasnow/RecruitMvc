@@ -44,45 +44,52 @@ const restApi = {
 	 * @param {Object|null} [data] - 요청 데이터 (GET은 쿼리스트링 처리)
 	 * @returns {jqXHR} jQuery Ajax 객체 (Promise-like)
 	 */
-	request: function (method, urlLink, data) {
-		if (!this.token.csrfToken || !this.token.csrfHeader) {
-			this.initToken();
-		}
-
-		// GET 요청일 경우 쿼리스트링으로 변환
-		if (method === 'GET' && data) {
-			let queryString = Object.keys(data)
-				.map(function (key) {
-					return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
-				})
-				.join('&');
-			urlLink += (urlLink.indexOf('?') !== -1 ? '&' : '?') + queryString;
-			data = null;
-		}
-
-		let headers = {};
-		if (this.token.csrfToken && this.token.csrfHeader) {
-			headers[this.token.csrfHeader] = this.token.csrfToken;
-		}
-		if (this.token.authToken) {
-			headers['Authorization'] = 'Bearer ' + this.token.authToken;
-		}
-
-		return $.ajax({
-			type: method,
-			url: urlLink,
-			dataType: 'json',
-			contentType: 'application/json; charset=utf-8',
-			headers: headers,
-			data: data ? JSON.stringify(data) : null
-		}).fail(function (jqXHR) {
-			let message = jqXHR.responseText || '알 수 없는 에러가 발생했습니다.';
-			try {
-				let res = JSON.parse(jqXHR.responseText);
-				if (res.message) message = res.message;
-			} catch (e) {}
-			alert('API 요청 실패: ' + message);
-		});
+	request: function (method, urlLink, data, timeout) {
+	    if (!this.token.csrfToken || !this.token.csrfHeader) {
+	        this.initToken();
+	    }
+	
+	    // GET 요청일 경우 쿼리스트링으로 변환
+	    if (method === 'GET' && data) {
+	        let queryString = Object.keys(data)
+	            .map(function (key) {
+	                return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
+	            })
+	            .join('&');
+	        urlLink += (urlLink.indexOf('?') !== -1 ? '&' : '?') + queryString;
+	        data = null;
+	    }
+	
+	    let headers = {};
+	    if (this.token.csrfToken && this.token.csrfHeader) {
+	        headers[this.token.csrfHeader] = this.token.csrfToken;
+	    }
+	    if (this.token.authToken) {
+	        headers['Authorization'] = 'Bearer ' + this.token.authToken;
+	    }
+	
+	    const ajaxOptions = {
+	        type: method,
+	        url: urlLink,
+	        dataType: 'json',
+	        contentType: 'application/json; charset=utf-8',
+	        headers: headers,
+	        data: data ? JSON.stringify(data) : null
+	    };
+	
+	    // timeout 값이 있으면 옵션에 추가
+	    if (timeout !== undefined) {
+	        ajaxOptions.timeout = timeout;
+	    }
+	
+	    return $.ajax(ajaxOptions).fail(function (jqXHR) {
+	        let message = jqXHR.responseText || '알 수 없는 에러가 발생했습니다.';
+	        try {
+	            let res = JSON.parse(jqXHR.responseText);
+	            if (res.message) message = res.message;
+	        } catch (e) {}
+	        alert('API 요청 실패: ' + message);
+	    });
 	},
 
 	/**

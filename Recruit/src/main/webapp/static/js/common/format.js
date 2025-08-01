@@ -1,4 +1,13 @@
 const formatUtil = {
+	/**
+	 * null 또는 undefined를 지정된 기본값으로 치환
+	 * @param {*} value - 원본 값
+	 * @param {*} defaultValue - 대체 값 (기본값: "")
+	 * @returns {*} 원본 값 또는 대체 값
+	 */
+	formatNull: function(value, defaultValue = '') {
+		return (value === undefined || value === null || value === 'undefined') ? defaultValue : value;
+	},	
 	
 	/**
 	 * 숫자에 천 단위 콤마 삽입 (예: 1234567 -> "1,234,567")
