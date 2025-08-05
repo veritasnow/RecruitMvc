@@ -143,16 +143,21 @@ const shareInitModule = {
 
 // ✅ 게시판 모듈
 const boardModule = {
-  init: function () {
-    const posts = [
-      { id: 1, title: '공지사항입니다', author: '관리자', date: '2025-08-04' },
-      { id: 2, title: '자주 묻는 질문', author: '홍길동', date: '2025-08-03' },
-      { id: 3, title: '사이트 이용 안내', author: '김영희', date: '2025-08-01' }
-    ];
+// 1) 서버에서 데이터만 받아오는 함수 (Promise 반환)
+  getBoardList: function () {
+    return restApi.read('/sample/board/list', {})
+      .catch(function (error) {
+        console.error('API 요청 실패:', error);
+        throw error; // 호출한 쪽에서 추가 처리 가능하도록 에러 던짐
+      });
+  },
 
+  // 2) 받은 데이터로 UI 세팅하는 함수 (파라미터는 JSON 데이터)
+  setUi: function(posts) {
+    const cleanPosts = this.sanitizePosts(posts);
     const boardBody = document.getElementById("boardBody");
 
-    const html = posts.map(post => `
+    const html = cleanPosts.map(post => `
       <tr>
         <td>${post.id}</td>
         <td><a href="#">${post.title}</a></td>
@@ -162,7 +167,32 @@ const boardModule = {
     `).join('');
 
     boardBody.innerHTML = html;
-  }
+  },
+
+  // 3) getBoardList 호출 후 setUi 실행 (초기화 또는 버튼 이벤트에 사용)
+  init: function () {
+    this.getBoardList()
+      .then(data => this.setUi(data))
+      .catch(error => {
+        // 에러 처리, 필요시 UI 표시 등
+        alert('게시판 데이터를 불러오는 데 실패했습니다.');
+      });
+  },
+  
+  // 4) getBoardList 호출 후 xss 제거
+  sanitizePosts: function(posts) {
+    function removeScriptTags(str) {
+      if (!str) return '';
+      return str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    }
+
+    return posts.map(post => ({
+      id    : String(post.id),
+      title : DOMPurify.sanitize(removeScriptTags(post.title)),
+      author: DOMPurify.sanitize(removeScriptTags(post.author)),
+      date  : DOMPurify.sanitize(removeScriptTags(post.date))
+    }));
+  },  
 };
 
 

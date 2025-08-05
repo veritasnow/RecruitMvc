@@ -28,6 +28,10 @@
 <script src="/static/js/common/rest.js" type="text/javascript"></script>
 <script src="/static/js/common/utils.js" type="text/javascript"></script>
 
+<!-- DOM PURIY -->
+<script src="/static/js/common/security/purify.min.js" type="text/javascript"></script>
+
+
 <!-- Modal -->
 <script src="/static/js/jquery/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="/static/css/jquery.modal.min.css" />

@@ -1,5 +1,8 @@
 package com.recruit.web.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,7 @@ import com.recruit.router.Router;
 import com.recruit.router.ViewConstants;
 import com.recruit.web.dto.SampleRequestDto;
 import com.recruit.web.dto.SampleResonseDto;
+import com.recruit.web.dto.sample.SampleListResponseDto;
 
 @RequestMapping("/sample")
 @Controller
@@ -68,4 +72,19 @@ public class SampleController {
 
 	    return new ResponseEntity<>(test, HttpStatus.OK);
 	}
+	
+	
+    @GetMapping("/board/list")
+	@ResponseBody    
+    public ResponseEntity<?> getBoardList() {
+    	
+    	List<SampleListResponseDto> result = Arrays.asList(
+            new SampleListResponseDto(1, "공지사항입니다", "관리자", "2025-08-04"),
+            new SampleListResponseDto(2, "자주 묻는 질문", "홍길동", "2025-08-03"),
+            new SampleListResponseDto(3, "사이트 이용 안내", "김영희", "2025-08-01")
+        );
+    	
+    	return new ResponseEntity<>(result, HttpStatus.OK);    		
+    }	
+	
 }
