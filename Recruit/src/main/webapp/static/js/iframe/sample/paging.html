@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>페이징 샘플</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		#pagingArea a {
+			margin: 0 4px;
+			padding: 5px 10px;
+			text-decoration: none;
+			color: #333;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		#pagingArea a.active {
+			background-color: #007bff;
+			color: white;
+			font-weight: bold;
+		}
+		#pagingArea a.disabled {
+			pointer-events: none;
+			color: #aaa;
+			border-color: #eee;
+			cursor: default;
+		}
+	</style>
+</head>
+<body>
+
+<h2>페이징 UI 샘플</h2>
+<div id="pagingArea"></div>
+
+<script>
+// ----------------------------- 페이징 유틸 -----------------------------
+function calculatePageGroup(cnt, pageIndex, pageStep = 10, pageGroupSize = 10) {
+	const totalPage = Math.ceil(cnt / pageStep); // 총 페이지 수 계산 (올림)
+	const startPage = Math.floor((pageIndex - 1) / pageGroupSize) * pageGroupSize + 1; // 현재 페이지 그룹 시작 번호
+	const endPage = Math.min(startPage + pageGroupSize - 1, totalPage); // 현재 페이지 그룹 끝 번호
+	const prevPageBtn = startPage - 1; // 이전 페이지 그룹 버튼 번호
+	const nextPageBtn = endPage + 1; // 다음 페이지 그룹 버튼 번호
+
+	return { totalPage, startPage, endPage, prevPageBtn, nextPageBtn };
+}
+
+function createPagingHtml(startPage, endPage, pageIndex) {
+	let html = `
+		<a href="javascript:void(0)" id="prevPageBtn" class="prev disabled">
+			&lt;
+		</a>
+	`;
+
+	for (let i = startPage; i <= endPage; i++) {
+		if (i === pageIndex) {
+			html += `<a href="javascript:void(0)" class="active">${i}</a>`;
+		} else {
+			html += `<a href="javascript:void(0)" id="page_${i}">${i}</a>`;
+		}
+	}
+
+	html += `
+		<a href="javascript:void(0)" id="nextPageBtn" class="next disabled">
+			&gt;
+		</a>
+	`;
+
+	return html;
+}
+
+function bindPagingEvents({ prevPageBtn, nextPageBtn, startPage, endPage, pageIndex, totalPage }) {
+	if (prevPageBtn >= 1) {
+		$('#prevPageBtn').removeClass('disabled').click(() => fnChangePage(prevPageBtn));
+	}
+
+	if (nextPageBtn <= totalPage) {
+		$('#nextPageBtn').removeClass('disabled').click(() => fnChangePage(nextPageBtn));
+	}
+
+	for (let i = startPage; i <= endPage; i++) {
+		if (i !== pageIndex) {
+			$(`#page_${i}`).click(function () {
+				const pageNum = parseInt(this.textContent, 10);
+				fnChangePage(pageNum);
+			});
+		}
+	}
+}
+
+function fnSetPageBtn(pagePosition, cnt, pageIndex, pageStep = 10, pageGroupSize = 5) { 
+	const pageGroup = calculatePageGroup(cnt, pageIndex, pageStep, pageGroupSize);
+	const html = createPagingHtml(pageGroup.startPage, pageGroup.endPage, pageIndex);
+	$(`#${pagePosition}`).html(html);
+	bindPagingEvents({ ...pageGroup, pageIndex });
+}
+
+// ----------------------------- 페이지 이동 함수 -----------------------------
+function fnChangePage(pageNum) {
+	console.log(`페이지 변경 요청: ${pageNum}`);
+	// 페이지 변경 시 다시 페이징 버튼 렌더링
+	fnSetPageBtn("pagingArea", totalCount, pageNum); // 예시: 총 데이터 95건, 실제론 REST 호출 후 받아온 총 개수 사용
+}
+
+// ----------------------------- 초기 실행 -----------------------------
+$(document).ready(function () {
+	fnSetPageBtn("pagingArea", totalCount, 1); // 초기 페이지 1, 총 데이터 95건
+});
+
+
+let totalCount = 210;
+
+</script>
+
+</body>
+</html>
