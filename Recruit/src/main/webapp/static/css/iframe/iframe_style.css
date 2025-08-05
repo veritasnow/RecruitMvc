@@ -3,7 +3,6 @@
 /*reset용 아님*/
 html, body, #wrap, #container, #containerIn {
   height: 100%;
-  overflow: hidden; /* 화면 전체 스크롤 막기 */
 }
 
 #wrap {

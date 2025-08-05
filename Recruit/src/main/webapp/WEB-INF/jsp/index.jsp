@@ -17,7 +17,7 @@
 
 <!-- css -->
 <link rel="shortcut icon" href="http://assets.tumblr.com/images/favicons/favicon.ico?1">
-<link href="/static/css/main/notosanskr.css" rel="stylesheet">
+<link href="/static/css/notosanskr.css" rel="stylesheet">
 <link href="/static/css/reset.css"           rel="stylesheet">
 <link href="/static/css/main/style.css"      rel="stylesheet">
 <link href="/static/css/main/login.css"      rel="stylesheet">
