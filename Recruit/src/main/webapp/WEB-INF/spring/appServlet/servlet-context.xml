@@ -19,9 +19,17 @@
     <!-- Spring MVC 어노테이션 활성화 (@Controller, @RequestMapping 등) -->
     <mvc:annotation-driven />
 
+    <!-- DispatcherServlet이 정적 리소스를 처리하지 않게 함 -->
+    <mvc:default-servlet-handler />
+
     <!-- 정적 리소스 매핑 -->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="31556926" />
     <mvc:resources mapping="/upload/**" location="file:///C:/upload/" />
+
+    <!-- THIS IS FOR SWAGGER [START] -->
+    <bean name="applicationSwaggerConfig" class="com.recruit.swagger.SwaggerConfig"/>
+    <mvc:resources mapping="/swagger-ui/**" location="/swagger-ui/"/>
+    <!-- THIS IS FOR SWAGGER [END] -->
 
     <!-- 파일 업로드 multipartResolver -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
