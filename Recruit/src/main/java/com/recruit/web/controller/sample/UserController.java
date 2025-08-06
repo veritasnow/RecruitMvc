@@ -60,12 +60,12 @@ public class UserController {
         
         if (!result) {
         	response.put("status" , "error");
-			response.put("message", "유저 등록 실패");
+			response.put("message", "유저 수정 실패");
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
         
         response.put("status" , "success");
-		response.put("message", "유저 등록 성공");
+		response.put("message", "유저 수정 성공");
         
         return ResponseEntity.ok(response);
     }
@@ -82,12 +82,12 @@ public class UserController {
         
         if (!result) {
         	response.put("status" , "error");
-			response.put("message", "유저 등록 실패");
+			response.put("message", "유저 삭제 실패");
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
         
         response.put("status" , "success");
-		response.put("message", "유저 등록 성공");
+		response.put("message", "유저 삭제 성공");
         
         return ResponseEntity.ok(response);
     }
